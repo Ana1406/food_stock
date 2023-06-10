@@ -1,0 +1,8 @@
+<button
+  [disabled]="disabled"
+  [ngClass]="{ 'bg-gray-300/50': disabled, 'bg-emerald-500/50': !disabled }"
+  class="rounded-lg text-sm font-semibold p-3 mx-20"
+  routerLink="routerLink"
+>
+  {{ label }}
+</button>

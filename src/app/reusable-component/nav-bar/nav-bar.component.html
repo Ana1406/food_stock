@@ -1,0 +1,102 @@
+<!--Menu no expandido -->
+<nav
+  *ngIf="!isNavBarExpanded; else navExpanded"
+  class="flex flex-col items-center h-screen bg-slate-50 border-r-2 border-gray-300 w-20 sm:w-14 md:w-14 lg:w-20 xl:w-20"
+>
+  <img src="../../../assets/logo-op2.png" alt="logo" class="w-12 h-10 mt-8" />
+  <div class="border-b-2 border-gray-300 my-5">
+    <button
+      class="flex items-center text-gray-300 rounded-lg bg-transparent hover:bg-slate-200 hover:text-gray-500 my-1.5 px-2 py-1.5"
+      (click)="toggleNavBar()"
+    >
+      <i class="material-icons text-center">search</i>
+    </button>
+  </div>
+
+  <ul *ngFor="let item of listRoutes" class="my-2.5 flex flex-col">
+    <li class="mx-8 sm: mx-8 md:mx-4 lg:mx-8 xl:mx-8">
+      <div class="flex flex-col border-b-2 border-gray-700 px-2 py-2">
+        <span class="material-icons-outlined text-center text-gray-300">{{
+          item.icon
+        }}</span>
+      </div>
+      <ul class="my-1.5 flex items-center" *ngFor="let text of item.routes">
+        <div class="border-b-2 border-gray-300">
+          <button
+            class="text-gray-300 text-lg rounded-lg w-fit hover:bg-slate-200 hover:text-gray-500 px-3 py-1.5 my-1"
+            (click)="toggleNavBar()"
+          >
+            <span class="material-icons-outlined">{{ text.icon }}</span>
+          </button>
+        </div>
+      </ul>
+    </li>
+  </ul>
+
+  <button
+    class="rounded-lg text-gray-300 mt-2 max-w-fit px-3 py-2 mx-auto hover:bg-slate-200 hover:text-gray-500"
+    (click)="signOut()"
+  >
+    <i class="material-icons text-center">logout</i>
+  </button>
+  <button
+    class="rounded-lg text-gray-300 mt-2 max-w-fit px-3 py-2 mx-auto hover:bg-slate-200 hover:text-gray-500"
+    (click)="toggleNavBar()"
+  >
+    <i class="material-icons text-center">menu</i>
+  </button>
+</nav>
+<!--Menu expandido -->
+<ng-template #navExpanded>
+  <nav
+    class="flex flex-col items-center h-screen bg-slate-50 border-r-2 border-gray-300 w-64 sm:w-56 md:w-64 lg:w-72 xl:w-72"
+  >
+    <div
+      class="flex flex-row items-center my-3.5 mx-3 bg-transparent shadow-lg rounded-lg"
+    >
+      <img src="../../../assets/logo-op2.png" alt="logo" class="w-1/4 my-1.5" />
+      <h1 class="text-sm text-center font-semibold mx-auto">Bienvenido</h1>
+    </div>
+    <div class="flex flex-row justify-center space-x-5 my-2 mr-2">
+      <app-input placeholder="Buscar" type="text" [required]="true" />
+      <button class="rounded-lg my-2 px-3 py-2 hover:bg-slate-200">
+        <span class="material-icons-outlined text-center">search</span>
+      </button>
+    </div>
+    <ul *ngFor="let item of listRoutes" class="items-center my-3">
+      <div class="border-b-2 border-gray-700">
+        <li class="space-x-2 py-2.5 px-3.5 rounded-lg bg-slate-50">
+          <span class="inline-block align-middle material-icons-outlined">{{
+            item.icon
+          }}</span>
+          {{ item.section }}
+        </li>
+      </div>
+      <li *ngFor="let text of item.routes" class="my-4 text-start">
+        <div
+          class="max-w-full px-2 rounded-t-lg border-b-2 border-gray-300 hover:bg-slate-200"
+        >
+          <button class="text-gray-500 hover:text-gray-800">
+            <span class="inline-block align-middle material-icons-outlined">{{
+              text.icon
+            }}</span>
+            {{ text.text }}
+          </button>
+        </div>
+      </li>
+    </ul>
+    <button
+      class="rounded-lg bg-slate-50 hover:bg-slate-200 max-w-fit my-2 px-3 py-2 mx-auto"
+      (click)="signOut()"
+    >
+      <span class="material-icons-outlined text-center">logout</span>
+      Cerrar Sesion
+    </button>
+    <button
+      class="rounded-lg bg-slate-50 hover:bg-slate-200 max-w-fit px-3 py-2 mx-auto"
+      (click)="toggleNavBar()"
+    >
+      <span class="material-icons-outlined text-center">close</span>
+    </button>
+  </nav>
+</ng-template>

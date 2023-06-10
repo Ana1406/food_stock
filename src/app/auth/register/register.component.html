@@ -1,0 +1,76 @@
+<div
+  class="flex flex-wrap justify-center items-center bg-emerald-500/50 h-screen"
+>
+  <div
+    class="bg-slate-50 border-none rounded-xl shadow-xl h-auto w-auto sm:w-92 md:w-92 lg:w-1/2 xl:w-1/2"
+  >
+    <h1 class="text-center py-5 font-semibold underline">
+      Creación de Usuario
+    </h1>
+    <h3 class="text-center text-gray-500 font-semibold px-5 text-md">
+      Bienvenido a la comunidad usuaria de Food Stock
+    </h3>
+    <form
+      [formGroup]="formRegister"
+      (ngSubmit)="registerForm()"
+      class="flex flex-col items-center mx-auto"
+    >
+      <div class="flex flew-row">
+        <i class="material-icons text-gray-500 my-3">account_circle</i>
+        <app-input
+          placeholder="Nombre de Usuario"
+          type="text"
+          [control]="formRegister.get('userName')"
+          [required]="true"
+          [error]="formRegister.get('userName').invalid"
+        />
+      </div>
+      <div class="flex flew-row">
+        <i class="material-icons text-gray-500 my-3">contact_mail</i>
+        <app-input
+          placeholder="E-mail"
+          type="email"
+          [control]="formRegister.get('email')"
+          [required]="true"
+          [error]="formRegister.get('email').invalid"
+        />
+      </div>
+      <div class="flex flew-row">
+        <i class="my-3 material-icons text-gray-500">lock_open</i>
+        <app-input
+          placeholder="Contraseña"
+          type="password"
+          [control]="formRegister.get('password')"
+          [required]="true"
+          [error]="formRegister.get('password').invalid"
+        />
+      </div>
+
+      <div class="flex flew-row">
+        <i class="material-icons text-gray-500 my-3">lock</i>
+        <app-input
+          placeholder="Confirmacion de Contraseña"
+          type="password"
+          [control]="formRegister.get('confirmPassword')"
+          [required]="true"
+          [error]="formRegister.get('confirmPassword').invalid"
+        />
+      </div>
+      <a href="" class="mt-5 text-sm text-gray-500 px-5 font-semibold underline"
+        >Acepta los terminos y condiciones establecidos</a
+      >
+      <div
+        *ngIf="
+          formRegister.hasError('matchnotPasswords') &&
+          formRegister.get('confirmPassword').dirty
+        "
+        class="text-center text-red-800"
+      >
+        Las contraseñas no coinciden.
+      </div>
+      <div class="my-5">
+        <app-button label="Registro" [disabled]="formRegister.invalid" />
+      </div>
+    </form>
+  </div>
+</div>

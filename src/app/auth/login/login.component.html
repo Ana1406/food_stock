@@ -1,0 +1,74 @@
+<div class="flex flex-wrap">
+  <div
+    class="flex flex-col items-center justify-center w-full h-screen bg-emerald-500/50 shadow-xl shadow-emerald-600 sm:w-full sm:h-auto md:w-full md:h-screen lg:w-1/2 lg:h-screen xl:w-1/2 xl:h-screen"
+  >
+    <div class="flex flex-col my-36 sm:my-12 md:my-12 lg:mt-36 xl:mt-36">
+      <img
+        src="../../../assets/logo.jpg"
+        alt="Logo"
+        class="mx-auto w-60 sm:w-52 md:w-60 lg:w-60 xl:w-60"
+      />
+      <h1
+        class="text-center text-white font-bold my-5 text-5xl sm:text-xl md:text-5xl lg:text-5xl xl:text-5xl"
+      >
+        Food Stock
+      </h1>
+      <h3
+        class="text-center text-white font-semibold my-5 underline text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl"
+      >
+        Sistema de Inventario para Despensas
+      </h3>
+    </div>
+  </div>
+  <div
+    class="flex flex-col items-center justify-center bg-slate-50 w-full h-screen sm:w-full sm:h-auto md:w-full md:h-screen lg:w-1/2 lg:h-screen xl:w-1/2 xl:h-screen"
+  >
+    <h1 class="text-center font-bold text-gray-800 font-bold text-2xl mt-12">
+      Hola de Nuevo!
+    </h1>
+    <h3
+      class="text-center font-bold text-gray-800 font-semibold text-xl mt-4 underline"
+    >
+      Inicia Sesion para Continuar:
+    </h3>
+    <div class="bg-transparent rounded-lg shadow-xl mx-28 my-10 w-96 p-5">
+      <form
+        class="flex flex-col items-center"
+        [formGroup]="form"
+        (ngSubmit)="loginForm()"
+      >
+        <app-input
+          placeholder="Ingrese su usuario"
+          type="text"
+          [control]="form.get('userName')"
+          [required]="true"
+          [error]="form.get('userName').invalid"
+        />
+        <app-input
+          placeholder="Ingrese su constraseña"
+          type="password"
+          [control]="form.get('password')"
+          [required]="true"
+          [error]="form.get('password').invalid"
+        />
+        <a
+          [routerLink]="['/forgotPassword']"
+          routerLinkActive="router-link-active"
+          class="text-sm text-right font-semibold underline mx-2"
+          >Olvido su contraseña?</a
+        >
+        <div class="my-5 mx-auto">
+          <app-button
+            label="Inicie Sesion"
+            [disabled]="form.invalid"
+          ></app-button>
+        </div>
+      </form>
+      <a
+        [routerLink]="['/register']"
+        class="text-sm text-center font-semibold mx-2"
+        >Crea una cuenta</a
+      >
+    </div>
+  </div>
+</div>
