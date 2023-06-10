@@ -65,7 +65,6 @@ export class NavBarComponent implements OnInit{
   ngOnInit(){
     this.supabase.authChanges((event,session)=>{
       this.userName=session?.user.user_metadata['userName']
-      //console.log(user)
     })
   }
 
@@ -78,7 +77,6 @@ export class NavBarComponent implements OnInit{
 
   toggleNavBar(){
     this.isNavBarExpanded=!this.isNavBarExpanded;
-     //console.log(this.supabase)
     
   }
 }

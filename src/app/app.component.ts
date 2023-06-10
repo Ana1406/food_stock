@@ -14,12 +14,10 @@ export class AppComponent {
 
   constructor(private supabaseService: SupabaseService) {
     this.supabaseService.authChanges((event: AuthChangeEvent) => {
-     console.log(event)
       if (event === 'SIGNED_IN') {
         this.sessionValidate = true
       } else if (event === 'SIGNED_OUT') {
         this.sessionValidate = false
-  // nuevos cambios
       }
     })
   }
