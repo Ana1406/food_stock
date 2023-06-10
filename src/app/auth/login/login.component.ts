@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SupabaseService } from 'src/app/supabase.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ValidationSessionService } from 'src/app/validation-session.service';
 
 @Component({
   selector: 'app-login',
