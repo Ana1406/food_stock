@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { SupabaseService } from 'src/app/supabase.service';
 import { Router } from '@angular/router';
+import { SupabaseAuthClient } from '@supabase/supabase-js/dist/module/lib/SupabaseAuthClient';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,13 +10,15 @@ import { Router } from '@angular/router';
 })
 
 
-export class NavBarComponent{
+export class NavBarComponent implements OnInit{
 
   isNavBarExpanded=false;
   sessionValidate=false;
-  user:any
+  userName=''
+  
 
   constructor(private supabase: SupabaseService, private route:Router) {}
+
 
   listRoutes:any=[
     {
@@ -59,15 +62,21 @@ export class NavBarComponent{
    ]}
   ]
 
+  ngOnInit(){
+    this.supabase.authChanges((event,session)=>{
+      this.userName=session?.user.user_metadata['userName']
+    })
+  }
+
    async signOut(){
      await this.supabase.signOut()
      this.route.navigateByUrl('/auth/login')
   }
-  
+
 
 
   toggleNavBar(){
     this.isNavBarExpanded=!this.isNavBarExpanded;
-    console.log('holi')
+    
   }
 }

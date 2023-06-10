@@ -56,6 +56,5 @@ export class RegisterComponent {
     })
     
 this.router.navigateByUrl('/auth/login')
-    // console.log(this.formRegister.getRawValue())
   }
 }
