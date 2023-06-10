@@ -1,6 +1,5 @@
 import { Component,OnInit } from '@angular/core';
 import { SupabaseService } from 'src/app/supabase.service';
-import { ValidationSessionService } from 'src/app/validation-session.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,18 +24,18 @@ export class NavBarComponent{
     textShort:'Admin',
     routes:[ 
       {
-        route: '/dashboard',
+        route: '/admin/dashboard',
         text: 'Panel de Trabajo',
         
         icon: 'dashboard',
       },
       { 
-        route: '/settings',
+        route: '/admin/settings',
         text: 'Configuración',
         icon: 'settings' 
       },
       { 
-        route: '/tables',
+        route: '/admin/tables',
         text: 'Tablas', 
         icon: 'table_chart' 
       }
@@ -48,12 +47,12 @@ export class NavBarComponent{
     textShort:'Inventario',
     routes:[ 
       {
-        route: '/history',
+        route: 'inventory/history',
         text: 'Historia',
         icon: 'history',
       },
       { 
-        route: 'home/products',
+        route: 'inventory/products',
         text: 'Productos',
         icon: 'inventory_2' 
       }

@@ -76,7 +76,10 @@
         <div
           class="max-w-full px-2 rounded-t-lg border-b-2 border-gray-300 hover:bg-slate-200"
         >
-          <button class="text-gray-500 hover:text-gray-800">
+          <button
+            class="text-gray-500 hover:text-gray-800"
+            [routerLink]="text.route"
+          >
             <span class="inline-block align-middle material-icons-outlined">{{
               text.icon
             }}</span>
