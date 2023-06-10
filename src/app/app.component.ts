@@ -18,7 +18,8 @@ export class AppComponent {
         this.sessionValidate = true
       } else if (event === 'SIGNED_OUT') {
         this.sessionValidate = false
-        // oli
+
+        // nuevos cambios
       }
     })
   }
