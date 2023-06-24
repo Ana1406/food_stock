@@ -1,8 +1,24 @@
 <button
   [disabled]="disabled"
-  [ngClass]="{ 'bg-gray-300/50': disabled, 'bg-emerald-500/50': !disabled }"
-  class="rounded-lg text-sm font-semibold p-3 mx-20"
-  routerLink="routerLink"
+  [ngClass]="{
+    'rounded-sm': border === 'small',
+    'rounded-md': border === 'medium',
+    'rounded-lg': border === 'large',
+    'rounded-full': border === 'full',
+    'font-thin': font === 'thin',
+    'font-extraligth': font === 'extraligth',
+    'font-light': font === 'light',
+    'font-normal': font === 'normal',
+    'font-medium': font === 'medium',
+    'font-semibold': font === 'semibold',
+    'font-bold': font === 'bold',
+    'font-extrabold': font === 'extrabold',
+    'hover:bg-blue-200':hover==='normal',
+    'hover:bg-red-500':hover==='logOut',
+
+  }"
+  class="flex justify-center w-auto text-sm text-center p-2.5 mb-0.5"
+  [class]="currentColor"
 >
-  {{ label }}
+  <ng-content></ng-content>
 </button>

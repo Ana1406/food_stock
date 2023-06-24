@@ -1,107 +1,156 @@
 <!--Menu no expandido -->
 <nav
   *ngIf="!isNavBarExpanded; else navExpanded"
-  class="flex flex-col items-center h-screen bg-slate-50 border-r-2 border-gray-300 w-20 sm:w-14 md:w-14 lg:w-20 xl:w-20"
+  class="flex flex-col items-center h-screen bg-stone-50 ml-0.5 border-r-2 border-gray-500 w-24 sm:w-20 md:w-20 lg:w-24 xl:w-24"
 >
-  <img src="../../../assets/logo-op2.png" alt="logo" class="w-12 h-10 mt-8" />
-  <div class="border-b-2 border-gray-300 my-5">
-    <button
-      class="flex items-center text-gray-300 rounded-lg bg-transparent hover:bg-slate-200 hover:text-gray-500 my-1.5 px-2 py-1.5"
-      (click)="toggleNavBar()"
-    >
-      <i class="material-icons text-center">search</i>
-    </button>
-  </div>
+  <img src="../../../assets/logo-op2.png" alt="logo" class="w-12 h-10 my-8" />
 
-  <ul *ngFor="let item of listRoutes" class="my-2.5 flex flex-col">
-    <li class="mx-8 sm: mx-8 md:mx-4 lg:mx-8 xl:mx-8">
-      <div class="flex flex-col border-b-2 border-gray-700 px-2 py-2">
-        <span class="material-icons-outlined text-center text-gray-300">{{
-          item.icon
-        }}</span>
-      </div>
-      <ul class="my-1.5 flex items-center" *ngFor="let text of item.routes">
-        <div class="border-b-2 border-gray-300">
-          <button
-            class="text-gray-300 text-lg rounded-lg w-fit hover:bg-slate-200 hover:text-gray-500 px-3 py-1.5 my-1"
-            (click)="toggleNavBar()"
-          >
-            <span class="material-icons-outlined">{{ text.icon }}</span>
-          </button>
-        </div>
+  <ul
+    *ngFor="let item of listRoutes"
+    class="my-4 flex flex-col justify-center items-center"
+  >
+    <li>
+      <p class="text-xs text-center font-semibold text-gray-500 uppercase">
+        {{ item.textShort }}
+      </p>
+
+      <ul
+        class="my-1 flex justify-center items-center"
+        *ngFor="let text of item.routes"
+      >
+        <app-button
+          (click)="toggleNavBar()"
+          [border]="'full'"
+          color="bg-transparent"
+          [font]="'thin'"
+          [hover]="'normal'"
+        >
+          <span class="material-icons-outlined text-gray-500">{{
+            text.icon
+          }}</span>
+        </app-button>
       </ul>
     </li>
   </ul>
 
-  <button
-    class="rounded-lg text-gray-300 mt-2 max-w-fit px-3 py-2 mx-auto hover:bg-slate-200 hover:text-gray-500"
-    (click)="signOut()"
+  <app-button
+    (click)="toggleDialog()"
+    [border]="'full'"
+    color="bg-transparent"
+    class="mt-10"
+    [hover]="'logOut'"
   >
-    <i class="material-icons text-center">logout</i>
-  </button>
-  <button
-    class="rounded-lg text-gray-300 mt-2 max-w-fit px-3 py-2 mx-auto hover:bg-slate-200 hover:text-gray-500"
+    <span class="material-icons text-center text-gray-500">logout</span>
+  </app-button>
+  <app-dialog *ngIf="isDialogOpen" [title]="'Cerrar Sesion'">
+    Seguro desea cerrar sesion?
+    <div class="flex justify-end" footer>
+      <app-button
+        (click)="toggleDialog()"
+        [border]="'full'"
+        color="bg-stone-200/50"
+        [hover]="'normal'"
+      >
+        <span class="material-icons text-center ml-2">close</span></app-button
+      >
+      <app-button
+        (click)="signOut()"
+        color="bg-red-500"
+        [border]="'large'"
+        class="mr-2"
+        >Cerrar Sesion
+        <span class="material-icons text-center ml-2">logout</span></app-button
+      >
+    </div>
+  </app-dialog>
+  <app-button [border]="'full'" color="bg-transparent" [hover]="'normal'">
+    <span class="material-icons text-center text-gray-500">account_box</span>
+  </app-button>
+  <app-button
     (click)="toggleNavBar()"
+    [border]="'full'"
+    color="bg-transparent"
+    [hover]="'normal'"
   >
-    <i class="material-icons text-center">menu</i>
-  </button>
+    <span class="material-icons text-center text-gray-500">menu</span>
+  </app-button>
 </nav>
 <!--Menu expandido -->
 <ng-template #navExpanded>
   <nav
-    class="flex flex-col items-center h-screen bg-slate-50 border-r-2 border-gray-300 w-64 sm:w-56 md:w-64 lg:w-72 xl:w-72"
+    class="flex flex-col bg-stone-50 h-screen border-r-2 border-gray-500 w-60 sm:w-52 md:w-52 lg:w-60 xl:w-60"
   >
     <div
-      class="flex flex-row items-center my-3.5 mx-3 bg-transparent shadow-lg rounded-lg"
+      class="flex flex-row shrink items-center my-3.5 mx-3 bg-blue-700/20 shadow-lg rounded-lg w-auto"
     >
       <img src="../../../assets/logo-op2.png" alt="logo" class="w-1/4 my-1.5" />
-      <h1 class="text-sm text-center font-semibold mx-auto">
+      <h1 class="text-sm sm:text-xs md:text-xs ml-2.5 text-start font-normal">
         Bienvenido {{ userName }}
       </h1>
     </div>
-    <div class="flex flex-row justify-center space-x-5 my-2 mr-2">
-      <app-input placeholder="Buscar" type="text" [required]="true" />
-      <button class="rounded-lg my-2 px-3 py-2 hover:bg-slate-200">
-        <span class="material-icons-outlined text-center">search</span>
-      </button>
-    </div>
-    <ul *ngFor="let item of listRoutes" class="items-center my-3">
-      <div class="border-b-2 border-gray-700">
-        <li class="space-x-2 py-2.5 px-3.5 rounded-lg bg-slate-50">
-          <span class="inline-block align-middle material-icons-outlined">{{
-            item.icon
-          }}</span>
-          {{ item.section }}
-        </li>
-      </div>
+
+    <ul *ngFor="let item of listRoutes" class="items-start my-3">
+      <li class="py-2.5 text-start mx-5 uppercase font-medium text-gray-500/40">
+        {{ item.section }}
+      </li>
+
       <li *ngFor="let text of item.routes" class="my-4 text-start">
         <div
-          class="max-w-full px-2 rounded-t-lg border-b-2 border-gray-300 hover:bg-slate-200"
+          class="mx-2 max-w-full bg-transparent hover:bg-blue-200 rounded-lg"
         >
-          <button
-            class="text-gray-500 hover:text-gray-800"
+          <app-button
             [routerLink]="text.route"
+            [font]="'thin'"
+            color="bg-transparent"
           >
-            <span class="inline-block align-middle material-icons-outlined">{{
-              text.icon
-            }}</span>
-            {{ text.text }}
-          </button>
+            <span
+              class="inline-block align-middle material-icons-outlined mx-3"
+              >{{ text.icon }}</span
+            >
+            {{ text.text }}</app-button
+          >
         </div>
       </li>
     </ul>
-    <button
-      class="rounded-lg bg-slate-50 hover:bg-slate-200 max-w-fit my-2 px-3 py-2 mx-auto"
-      (click)="signOut()"
+    <div
+      class="flex justify-center max-w-full w-auto mx-2 bg-transparent hover:bg-red-500 rounded-lg"
     >
-      <span class="material-icons-outlined text-center">logout</span>
-      Cerrar Sesion
-    </button>
-    <button
-      class="rounded-lg bg-slate-50 hover:bg-slate-200 max-w-fit px-3 py-2 mx-auto"
-      (click)="toggleNavBar()"
+      <app-button
+        [border]="'large'"
+        color="bg-transparent"
+        font="normal"
+        (click)="signOut()"
+      >
+        Cerrar Sesion
+        <span class="material-icons-outlined text-center ml-2">logout</span>
+      </app-button>
+    </div>
+    <div
+      class="flex justify-center max-w-full space-x-5 mx-2 bg-transparent hover:bg-blue-200 rounded-lg"
     >
-      <span class="material-icons-outlined text-center">close</span>
-    </button>
+      <app-button
+        [border]="'large'"
+        color="bg-transparent"
+        font="normal"
+        (click)="toggleNavBar()"
+      >
+        Cuenta
+        <span class="material-icons-outlined text-center ml-2"
+          >account_box</span
+        >
+      </app-button>
+    </div>
+    <div
+      class="flex justify-center max-w-full w-auto mx-2 bg-transparent hover:bg-blue-200 rounded-lg"
+    >
+      <app-button
+        [border]="'large'"
+        color="bg-transparent"
+        font="normal"
+        (click)="toggleNavBar()"
+      >
+        <span class="text-center material-icons-outlined">close</span>
+      </app-button>
+    </div>
   </nav>
 </ng-template>

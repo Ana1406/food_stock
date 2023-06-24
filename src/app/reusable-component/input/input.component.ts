@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+type Colors= 'bg-transparent'|'bg-slate-200/50'|'bg-lime-700/50'
+
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
@@ -22,5 +24,8 @@ export class InputComponent {
 
   @Input()
   control!: FormControl;
+
+  @Input()
+  color:Colors='bg-slate-200/50';
 
 }

@@ -1,0 +1,17 @@
+<div class="fixed inset-0 flex items-center justify-center z-50">
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 opacity-75"
+  ></div>
+  <div
+    class="relative bg-white rounded-lg shadow-lg p-3 h-auto sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
+  >
+    <!-- Contenido del diálogo -->
+    <h2 *ngIf="title" class="text-lg font-bold mb-4 mt-5">{{ title }}</h2>
+    <ng-content></ng-content>
+
+    <!-- Botones de acción -->
+    <div class="mt-6">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+</div>
