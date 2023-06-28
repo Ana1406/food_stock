@@ -5,21 +5,31 @@ import { ConfigComponent } from './config/config.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TablesComponent } from './tables/tables.component';
 
-
-const routes : Routes= [
+const routes: Routes = [
   {
-    path: 'settings', component: ConfigComponent
+    path: 'settings',
+    component: ConfigComponent,
+    // children: [
+    //   {
+    //     path: 'permissions',
+    //   },
+    //   {
+    //     path: 'users',
+    //   },
+    // ],
   },
   {
-    path: 'dashboard', component: DashboardComponent
+    path: 'dashboard',
+    component: DashboardComponent,
   },
   {
-    path: 'tables', component: TablesComponent
-  }
-]
+    path: 'tables',
+    component: TablesComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

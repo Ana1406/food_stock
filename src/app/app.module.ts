@@ -6,6 +6,10 @@ import { AuthModule } from './auth/auth.module';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { ReusableComponentModule } from './reusable-component/reusable-component.module';
 import { NavBarComponent } from './reusable-component/nav-bar/nav-bar.component';
+import { AdminModule } from './admin/admin.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { InventoryRoutingModule } from './inventory/inventory-routing.module';
 
 
 @NgModule({
@@ -17,7 +21,11 @@ import { NavBarComponent } from './reusable-component/nav-bar/nav-bar.component'
     AppRoutingModule,
     AuthModule,
     AuthRoutingModule,
-    ReusableComponentModule
+    ReusableComponentModule,
+    AdminModule,
+    AdminRoutingModule,
+    InventoryModule,
+    InventoryRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,74 +1,61 @@
-<div class="flex flex-wrap">
-  <div
-    class="flex flex-col items-center justify-center w-full h-screen bg-sky-500/50 shadow-xl shadow-emerald-600 sm:w-full sm:h-auto md:w-full md:h-screen lg:w-1/2 lg:h-screen xl:w-1/2 xl:h-screen"
-  >
-    <div class="flex flex-col my-36 sm:my-12 md:my-12 lg:mt-36 xl:mt-36">
+<div class="gradient2 grid lg:grid-cols-2 xl:grid-cols-2">
+  <div class="sm:hidden md:hidden lg:grid xl:grid image rounded-lg mx-2 my-2">
+    <div class="flex flex-col justify-center rounded-lg items-center gradient">
       <img
         src="../../../assets/logo-op2.png"
-        alt="Logo"
-        class="mx-auto w-60 sm:w-52 md:w-60 lg:w-60 xl:w-60"
+        alt="logo"
+        class="w-auto h-1/2 mb-5"
       />
-      <h1
-        class="text-center text-white font-bold my-5 text-5xl sm:text-xl md:text-5xl lg:text-5xl xl:text-5xl"
-      >
-        Food Stock
-      </h1>
-      <h3
-        class="text-center text-white font-semibold my-5 underline text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl"
-      >
-        Sistema de Inventario para Despensas
-      </h3>
+      <h1 class="text-4xl font-bold text-gray-800">Food Stock</h1>
+      <h2 class="text-2xl font-semibold text-gray-800">
+        Sistema de Inventario de Alimentos
+      </h2>
     </div>
   </div>
-  <div
-    class="flex flex-col items-center justify-center bg-slate-50 w-full h-screen sm:w-full sm:h-auto md:w-full md:h-screen lg:w-1/2 lg:h-screen xl:w-1/2 xl:h-screen"
-  >
-    <h1 class="text-center font-bold text-gray-800 font-bold text-2xl mt-12">
-      Hola de Nuevo!
-    </h1>
-    <h3
-      class="text-center font-bold text-gray-800 font-semibold text-xl mt-4 underline"
+  <div class="flex flex-col justify-center rounded-lg items-center h-screen">
+    <h1 class="text-4xl font-bold text-gray-800 my-10">Hola de Nuevo!</h1>
+    <h2 class="text-xl font-semibold text-gray-800">
+      Bienvenido inicia sesion para continuar
+    </h2>
+    <form
+      class="flex flex-col items-center justify-center bg-transparent my-5 w-80"
+      [formGroup]="form"
+      (ngSubmit)="loginForm()"
     >
-      Inicia Sesion para Continuar:
-    </h3>
-    <div class="bg-transparent rounded-lg shadow-xl mx-28 my-10 w-96 p-5">
-      <form
-        class="flex flex-col items-center"
-        [formGroup]="form"
-        (ngSubmit)="loginForm()"
-      >
+      <app-input
+        placeholder="E-mail"
+        type="email"
+        [control]="form.get('userName')"
+        [required]="true"
+        [error]="form.get('userName').invalid"
+        color="bg-slate-200/50"
+      />
+      <div class="items-start">
         <app-input
-          placeholder="Ingrese su email"
-          type="text"
-          [control]="form.get('userName')"
-          [required]="true"
-          [error]="form.get('userName').invalid"
-        />
-        <app-input
-          placeholder="Ingrese su constraseña"
+          placeholder="Contraseña"
           type="password"
           [control]="form.get('password')"
           [required]="true"
           [error]="form.get('password').invalid"
         />
-        <a
-          [routerLink]="['/forgotPassword']"
-          routerLinkActive="router-link-active"
-          class="text-sm text-right font-semibold underline mx-2"
-          >Olvido su contraseña?</a
-        >
-        <div class="my-5 mx-auto">
-          <app-button
-            label="Inicie Sesion"
-            [disabled]="form.invalid"
-          ></app-button>
+        <div *ngIf="form.get('password').errors && form.get('password').dirty">
+          <p
+            class="text-xs font-thin text-start text-red-500"
+            *ngIf="form.get('password').hasError('minlength')"
+          >
+            Minimo 6 Caracteres
+          </p>
         </div>
-      </form>
+      </div>
       <a
-        [routerLink]="['/register']"
-        class="text-sm text-center font-semibold mx-2"
-        >Crea una cuenta</a
+        [routerLink]="['/forgotPassword']"
+        class="ml-36 text-xs font-semibold underline mx-2"
+        >Olvido su contraseña</a
       >
-    </div>
+      <app-button class="my-5" [disabled]="form.invalid" [border]="'large'">
+        Inicie Sesion
+        <span class="material-icons mx-0.5">login</span></app-button
+      >
+    </form>
   </div>
 </div>

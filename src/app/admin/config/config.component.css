@@ -1,0 +1,22 @@
+.tabs{
+    @apply
+    flex flex-row 
+    justify-center 
+    items-center 
+    mx-20 
+    bg-transparent 
+    w-1/4 
+    h-auto
+}
+.tabClick{
+    @apply
+    border-b-4
+    border-sky-500
+}
+
+.tabNoClick{
+    @apply
+    border-b-2
+    border-gray-500
+}
+

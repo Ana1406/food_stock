@@ -1,21 +1,35 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+
+type BackgroundColor =
+  | 'bg-lime-700/50'
+  | 'bg-red-500'
+  | 'bg-blue-200'
+  | 'bg-transparent'
+  | 'bg-stone-200/50';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  styleUrls: ['./button.component.css'],
 })
 export class ButtonComponent {
+  @Input()
+  disabled: boolean = false;
 
   @Input()
-  disabled: boolean = false
+  color: BackgroundColor = 'bg-lime-700/50';
 
   @Input()
-  label:string='button'
+  border: String = '';
 
   @Input()
-  RouterLink:string=''
+  font: String = '';
 
+  @Input()
+  hover: string = '';
+
+  get currentColor() {
+    if (this.disabled) return 'bg-slate-200/50';
+    return this.color;
+  }
 }
-
