@@ -3,20 +3,25 @@
 >
   <thead>
     <tr>
-      <th class="border border-sky-300 px-3 font-medium">Usuario</th>
-      <th class="border border-sky-300 px-3 font-medium">E-mail</th>
-      <th class="border border-sky-300 px-3 font-medium">Permisos</th>
-      <th class="border border-sky-300 px-3 font-medium">Registro</th>
+      <th
+        *ngFor="let itemColum of headersColumn"
+        class="border border-sky-300 px-3 font-medium"
+      >
+        {{ itemColum }}
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr class="text-center even:bg-gray-100 odd:bg-sky-200/50">
-      <td class="border border-sky-300 px-3 font-thin">ana_1406</td>
-      <td class="border border-sky-300 px-3 font-thin">
-        anamariar317@gmail.com
+    <tr
+      *ngFor="let itemUsers of bodyColumn"
+      class="text-center even:bg-gray-100 odd:bg-sky-200/50"
+    >
+      <td
+        *ngFor="let valueHeader of valueHeaders"
+        class="border border-sky-300 px-3 font-thin"
+      >
+        {{ itemUsers[valueHeader] }}
       </td>
-      <td class="border border-sky-300 px-3 font-thin">Administrador</td>
-      <td class="border border-sky-300 px-3 font-thin">12/06/2022</td>
     </tr>
   </tbody>
 </table>
