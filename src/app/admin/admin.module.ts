@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TablesComponent } from './tables/tables.component';
 import { ReusableComponentModule } from '../reusable-component/reusable-component.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PermissionComponent } from './config/permission/permission.component';
+import { UsersComponent } from './config/users/users.component';
 
 
 
@@ -13,7 +15,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     ConfigComponent,
     DashboardComponent,
-    TablesComponent
+    TablesComponent,
+    PermissionComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

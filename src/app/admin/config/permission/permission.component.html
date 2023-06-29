@@ -1,0 +1,84 @@
+<div class="mx-20 my-5">
+  <h3 class="font-thin text-gray-800">Gestion de Permisos</h3>
+  <div
+    class="flex flex-row justify-end mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
+  >
+    <app-button
+      (click)="clickPermissionAdd()"
+      color="bg-stone-200/50"
+      [border]="'full'"
+    >
+      <span class="material-icons text-sky-500"> add_task </span>
+    </app-button>
+  </div>
+  <div
+    class="w-auto mx-auto sm:mx-auto sm:w-92 sm:max-w-sm sm:overflow-x-auto md:mx-auto md:w-92 md:max-w-md md:overflow-x-none lg:mx-auto lg:w-full lg:max-w-xl xl:mx-auto xl:w-full xl:max-w-2xl"
+  >
+    <app-table
+      [headersColumn]="['Titulo', 'Descripcion']"
+      [valueHeaders]="['title', 'description']"
+      [bodyColumn]="listPermission"
+    />
+    <form [formGroup]="createPermission" (ngSubmit)="permission()">
+      <app-dialog
+        *ngIf="isOpenCreatePermissionDialog"
+        [title]="'Creacíon de Permisos'"
+      >
+        <div
+          class="flex sm:flex-col sm:items-center md:flex-col md:items-center lg:flex-row lg:space-x-1 xl:flex-row xl:space-x-1"
+        >
+          <app-input
+            placeholder="Titulo"
+            type="text"
+            [control]="createPermission.get('title')"
+            [required]="true"
+            [error]="createPermission.get('title').invalid"
+            color="bg-slate-200/50"
+          />
+          <div class="">
+            <app-input
+              placeholder="Descripcion"
+              type="text"
+              [control]="createPermission.get('description')"
+              [required]="true"
+              [error]="createPermission.get('description').invalid"
+              color="bg-slate-200/50"
+            />
+            <div
+              *ngIf="
+                createPermission.get('description').errors &&
+                createPermission.get('description').dirty
+              "
+            >
+              <p
+                class="text-xs font-thin text-red-500 flex items-start"
+                *ngIf="
+                  createPermission.get('description').hasError('minlength')
+                "
+              >
+                Minimo 8 Caracteres
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end" footer>
+          <app-button
+            (click)="closeAdd()"
+            color="bg-red-500"
+            [border]="'large'"
+            class="mr-2"
+            >Cerrar</app-button
+          >
+          <app-button
+            color="bg-lime-700/50"
+            [disabled]="createPermission.invalid"
+            [border]="'large'"
+            class="mr-2"
+            >Crear</app-button
+          >
+        </div>
+      </app-dialog>
+    </form>
+  </div>
+</div>
