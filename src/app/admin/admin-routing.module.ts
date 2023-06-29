@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfigComponent } from './config/config.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TablesComponent } from './tables/tables.component';
-import { PermissionComponent } from './config/permission/permission.component';
-import { UsersComponent } from './config/users/users.component';
+import { PermissionComponent } from './permission/permission.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {

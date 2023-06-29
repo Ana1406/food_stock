@@ -57,4 +57,8 @@ export class AuthService {
   signOut() {
     return this.supabaseService.supabase.auth.signOut();
   }
+
+  forgotPassword(email: string) {
+    return this.supabaseService.supabase.auth.resetPasswordForEmail(email);
+  }
 }

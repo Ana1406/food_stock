@@ -28,7 +28,9 @@
             type="text"
             [control]="createUser.get('name')"
             [required]="true"
-            [error]="createUser.get('userName').invalid"
+            [error]="
+              createUser.get('name').invalid && createUser.get('name').touched
+            "
             color="bg-slate-200/50"
           />
           <div class="">
@@ -37,7 +39,10 @@
               type="password"
               [control]="createUser.get('password')"
               [required]="true"
-              [error]="createUser.get('password').invalid"
+              [error]="
+                createUser.get('password').invalid &&
+                createUser.get('password').touched
+              "
               color="bg-slate-200/50"
             />
             <div
@@ -63,7 +68,10 @@
             type="text"
             [control]="createUser.get('userName')"
             [required]="true"
-            [error]="createUser.get('userName').invalid"
+            [error]="
+              createUser.get('userName').invalid &&
+              createUser.get('userName').touched
+            "
             color="bg-slate-200/50"
           />
           <app-input
@@ -71,7 +79,9 @@
             type="email"
             [control]="createUser.get('email')"
             [required]="true"
-            [error]="createUser.get('email').invalid"
+            [error]="
+              createUser.get('email').invalid && createUser.get('email').touched
+            "
             color="bg-slate-200/50"
           />
         </div>

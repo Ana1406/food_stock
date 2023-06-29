@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { SupabaseService } from 'src/app/supabase.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +24,7 @@ export class LoginComponent {
     private router: Router
   ) {
     this.form = fb.group({
-      userName: ['', [Validators.required, Validators.email]],
+      userName: new FormControl('', [Validators.required, Validators.email]),
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
