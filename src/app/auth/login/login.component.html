@@ -1,7 +1,5 @@
 <div class="gradient2 grid lg:grid-cols-2 xl:grid-cols-2">
-  <div
-    class="sm:hidden sm:w-screen md:hidden md:w-screen lg:grid xl:grid image rounded-lg mx-2 my-2"
-  >
+  <div class="sm:hidden md:hidden lg:grid xl:grid image rounded-lg mx-2 my-2">
     <div class="flex flex-col justify-center rounded-lg items-center gradient">
       <img
         src="../../../assets/logo-op2.png"
@@ -29,7 +27,7 @@
         type="email"
         [control]="form.get('userName')"
         [required]="true"
-        [error]="form.get('userName').invalid"
+        [error]="form.get('userName').invalid && form.get('userName').touched"
         color="bg-slate-200/50"
       />
       <div class="items-start">
@@ -38,7 +36,7 @@
           type="password"
           [control]="form.get('password')"
           [required]="true"
-          [error]="form.get('password').invalid"
+          [error]="form.get('password').invalid && form.get('password').touched"
         />
         <div *ngIf="form.get('password').errors && form.get('password').dirty">
           <p

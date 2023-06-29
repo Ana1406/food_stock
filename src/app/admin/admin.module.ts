@@ -6,10 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TablesComponent } from './tables/tables.component';
 import { ReusableComponentModule } from '../reusable-component/reusable-component.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PermissionComponent } from './config/permission/permission.component';
-import { UsersComponent } from './config/users/users.component';
-
-
+import { PermissionComponent } from './permission/permission.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +15,13 @@ import { UsersComponent } from './config/users/users.component';
     DashboardComponent,
     TablesComponent,
     PermissionComponent,
-    UsersComponent
+    UsersComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReusableComponentModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

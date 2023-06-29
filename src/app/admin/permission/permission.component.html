@@ -32,7 +32,10 @@
             type="text"
             [control]="createPermission.get('title')"
             [required]="true"
-            [error]="createPermission.get('title').invalid"
+            [error]="
+              createPermission.get('title').invalid &&
+              createPermission.get('title').touched
+            "
             color="bg-slate-200/50"
           />
           <div class="">
@@ -41,7 +44,10 @@
               type="text"
               [control]="createPermission.get('description')"
               [required]="true"
-              [error]="createPermission.get('description').invalid"
+              [error]="
+                createPermission.get('description').invalid &&
+                createPermission.get('description').touched
+              "
               color="bg-slate-200/50"
             />
             <div
