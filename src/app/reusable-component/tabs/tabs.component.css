@@ -21,3 +21,8 @@
     border-gray-500
 }
 
+.iconClick{
+    @apply
+    text-sky-500
+}
+

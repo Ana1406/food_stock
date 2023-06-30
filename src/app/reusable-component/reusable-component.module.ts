@@ -8,10 +8,27 @@ import { RouterModule } from '@angular/router';
 import { TableComponent } from './table/table.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SelectComponent } from './select/select.component';
+import { TabsComponent } from './tabs/tabs.component';
 
 @NgModule({
-  declarations: [InputComponent, ButtonComponent, NavBarComponent, TableComponent, DialogComponent, SelectComponent],
+  declarations: [
+    InputComponent,
+    ButtonComponent,
+    NavBarComponent,
+    TableComponent,
+    DialogComponent,
+    SelectComponent,
+    TabsComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
-  exports: [InputComponent, ButtonComponent, NavBarComponent,TableComponent, DialogComponent,SelectComponent]
+  exports: [
+    InputComponent,
+    ButtonComponent,
+    NavBarComponent,
+    TableComponent,
+    DialogComponent,
+    SelectComponent,
+    TabsComponent,
+  ],
 })
 export class ReusableComponentModule {}

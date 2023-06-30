@@ -1,0 +1,14 @@
+<div class="tabs">
+  <app-button
+    *ngFor="let itemTab of tabs"
+    class="flex flex-col border-b-2 border-gray-500"
+    [routerLink]="itemTab.route"
+    routerLinkActive="tabClick"
+    color="bg-transparent"
+  >
+    <span class="material-icons mr-1.5" routerLinkActive="iconClick">
+      {{ itemTab.icon }}
+    </span>
+    {{ itemTab.title }}</app-button
+  >
+</div>
