@@ -87,4 +87,10 @@
       </app-dialog>
     </form>
   </div>
+  <app-snackbar [background]="option" *ngIf="isCreatedUser">
+    <div header></div>
+    <div>
+      <h1>{{ mensage }}</h1>
+    </div>
+  </app-snackbar>
 </div>

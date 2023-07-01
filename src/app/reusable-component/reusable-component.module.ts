@@ -9,6 +9,7 @@ import { TableComponent } from './table/table.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SelectComponent } from './select/select.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TabsComponent } from './tabs/tabs.component';
     DialogComponent,
     SelectComponent,
     TabsComponent,
+    SnackbarComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   exports: [
@@ -29,6 +31,7 @@ import { TabsComponent } from './tabs/tabs.component';
     DialogComponent,
     SelectComponent,
     TabsComponent,
+    SnackbarComponent,
   ],
 })
 export class ReusableComponentModule {}

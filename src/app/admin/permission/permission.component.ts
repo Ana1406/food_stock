@@ -21,6 +21,9 @@ export class PermissionComponent implements OnInit {
   toggleTabBtnPermission = false;
   isOpenCreatePermissionDialog = false;
   listPermission: any[] = [];
+  mensage: any;
+  option: any;
+  isCreatedUser: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -48,11 +51,21 @@ export class PermissionComponent implements OnInit {
 
   async permission() {
     const permissionData = this.createPermission.getRawValue();
-    await this.permissionService.create(
-      permissionData.title,
-      permissionData.description
-    );
-
+    try {
+      await this.permissionService.create(
+        permissionData.title,
+        permissionData.description
+      );
+      this.mensage = 'Creacion de Permiso realizado con exito';
+      this.option = 'success';
+    } catch (error) {
+      this.mensage = error;
+      this.option = 'error';
+    }
+    this.isCreatedUser = true;
+    setTimeout(() => {
+      this.isCreatedUser = false;
+    }, 10000);
     this.createPermission.reset();
     this.closeAdd();
   }
