@@ -4,24 +4,31 @@
   <thead>
     <tr>
       <th
-        *ngFor="let itemColum of headersColumn"
+        *ngFor="let column of headers"
         class="border border-sky-300 px-3 font-medium"
       >
-        {{ itemColum }}
+        {{ options.columns[column].title }}
       </th>
     </tr>
   </thead>
   <tbody>
     <tr
-      *ngFor="let itemUsers of bodyColumn"
+      *ngFor="let row of data"
       class="text-center even:bg-gray-100 odd:bg-sky-200/50"
     >
       <td
-        *ngFor="let valueHeader of valueHeaders"
+        *ngFor="let property of rowKeys(row)"
         class="border border-sky-300 px-3 font-thin"
       >
-        {{ itemUsers[valueHeader] }}
+        <ng-container
+          [ngTemplateOutlet]="findRow(property) || defaultRow"
+          [ngTemplateOutletContext]="{ $implicit: row, property }"
+        ></ng-container>
       </td>
     </tr>
   </tbody>
 </table>
+
+<ng-template #defaultRow let-row let-property="property">
+  {{ row[property] }}
+</ng-template>

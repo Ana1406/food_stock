@@ -10,11 +10,15 @@
   <div
     class="w-auto mx-auto sm:mx-auto sm:w-92 sm:max-w-sm sm:overflow-x-auto md:mx-auto md:w-92 md:max-w-md md:overflow-x-none lg:mx-auto lg:w-full lg:max-w-xl xl:mx-auto xl:w-full xl:max-w-2xl"
   >
-    <app-table
-      [headersColumn]="['Usuario', 'Email', 'Permisos', 'Registro']"
-      [valueHeaders]="['name', 'email', 'permissions', 'register']"
-      [bodyColumn]="listUsers"
-    />
+    <app-table [options]="tableOptions" [data]="listUsers">
+      <ng-template appTableRow="created_at" let-row>
+        <p>{{ row.created_at | date }}</p>
+      </ng-template>
+      <ng-template appTableRow="permission" let-row>
+        <p>{{ permissionNames(row.permission) }}</p>
+      </ng-template>
+    </app-table>
+
     <form [formGroup]="createUser" (ngSubmit)="register()">
       <app-dialog
         *ngIf="isOpenCreateUserDialog"

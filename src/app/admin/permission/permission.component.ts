@@ -5,10 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 import { PermissionService } from 'src/app/services/permission.service';
-import { UserService } from 'src/app/services/user.service';
-import { SupabaseService } from 'src/app/supabase.service';
 
 @Component({
   selector: 'app-permission',
@@ -17,10 +14,23 @@ import { SupabaseService } from 'src/app/supabase.service';
 })
 export class PermissionComponent implements OnInit {
   createPermission: FormGroup | any;
-
   toggleTabBtnPermission = false;
   isOpenCreatePermissionDialog = false;
   listPermission: any[] = [];
+
+  tableOptions = {
+    columns: {
+      name: {
+        title: 'Nombre',
+      },
+      description: {
+        title: 'Description',
+      },
+      created_at: {
+        title: 'Fecha de registro',
+      },
+    },
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -38,8 +48,9 @@ export class PermissionComponent implements OnInit {
       .then((data) => {
         data.data?.forEach((infoPermission, index) => {
           const objectPermission = {
-            title: infoPermission['name'],
+            name: infoPermission['name'],
             description: infoPermission['description'],
+            created_at: infoPermission['created_at'],
           };
           this.listPermission.push(objectPermission);
         });
