@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersComponent } from './users.component';
+import { ReusableComponentModule } from 'src/app/reusable-component/reusable-component.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -8,9 +10,9 @@ describe('UsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
-    })
-    .compileComponents();
+      declarations: [UsersComponent],
+      imports: [ReusableComponentModule, FormsModule, ReactiveFormsModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
