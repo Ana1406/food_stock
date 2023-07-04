@@ -8,7 +8,6 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { UserService } from 'src/app/services/user.service';
-import { SupabaseService } from 'src/app/supabase.service';
 
 @Component({
   selector: 'app-users',
@@ -17,10 +16,12 @@ import { SupabaseService } from 'src/app/supabase.service';
 })
 export class UsersComponent implements OnInit {
   createUser: FormGroup | any;
-
+  isCreatedUser = false;
   toggleTabBtnUsers = false;
   toogleTabAddUsers = false;
   isOpenCreateUserDialog = false;
+  mensage: any;
+  option: any;
   listUsers: any[] = [];
 
   constructor(
@@ -64,13 +65,25 @@ export class UsersComponent implements OnInit {
   async register() {
     const registerData = this.createUser.getRawValue();
 
-    await this.authService.signUp({
-      email: registerData.email,
-      password: registerData.password,
-      name: registerData.name,
-      permissions: [1],
-      // permissions: registerData.permission,
-    });
+    try {
+      await this.authService.signUp({
+        email: registerData.email,
+        password: registerData.password,
+        name: registerData.name,
+        permissions: [1],
+        // permissions: registerData.permission,
+      });
+      this.mensage = 'Creacion de Usuario realizado con exito';
+      this.option = 'success';
+    } catch (error) {
+      this.mensage = error;
+      this.option = 'error';
+      console.log(this.mensage);
+    }
+    this.isCreatedUser = true;
+    setTimeout(() => {
+      this.isCreatedUser = false;
+    }, 10000);
     this.createUser.reset();
     this.closeAdd();
   }
