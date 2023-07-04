@@ -9,6 +9,7 @@ import { TableComponent } from './table/table.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { SelectComponent } from './select/select.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { TableRowDirective } from './directives/table-row.directive';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     DialogComponent,
     SelectComponent,
     TabsComponent,
+    TableRowDirective,
     SnackbarComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
@@ -31,6 +33,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     DialogComponent,
     SelectComponent,
     TabsComponent,
+    TableRowDirective,
     SnackbarComponent,
   ],
 })

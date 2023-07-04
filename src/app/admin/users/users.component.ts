@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
+  
   createUser: FormGroup | any;
   isCreatedUser = false;
   toggleTabBtnUsers = false;
@@ -23,6 +24,22 @@ export class UsersComponent implements OnInit {
   mensage: any;
   option: any;
   listUsers: any[] = [];
+  tableOptions = {
+    columns: {
+      name: {
+        title: 'Nombre',
+      },
+      email: {
+        title: 'Email',
+      },
+      permission: {
+        title: 'Permisos',
+      },
+      created_at: {
+        title: 'Fecha de registro',
+      },
+    },
+  };
 
   constructor(
     private permissionService: PermissionService,
@@ -42,12 +59,12 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers({ page: 0, limit: 20 }).then((data) => {
       console.log(data);
-      data.data?.forEach((infoUser, index) => {
+      data.data?.forEach((infoUser) => {
         const objectUser = {
           name: infoUser['user_name'],
           email: infoUser['email'],
-          permissions: infoUser['permission'],
-          register: infoUser['created_id'],
+          permission: infoUser['permission'],
+          created_at: infoUser['created_at'],
         };
         this.listUsers.push(objectUser);
       });
@@ -94,5 +111,9 @@ export class UsersComponent implements OnInit {
 
   clickAdd() {
     this.isOpenCreateUserDialog = true;
+  }
+
+  permissionNames(permissions: any[]) {
+    return permissions.map((i) => i.name).join(',');
   }
 }
