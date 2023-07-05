@@ -19,7 +19,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Angular Deploy gh-pages Actions
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
         with:
