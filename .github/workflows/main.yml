@@ -16,7 +16,7 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           build_configuration: production
           deploy_branch: gh-pages
-          base_href: /foodstock/
+          base_href: /food_stock/
           angular_dist_build_folder: dist/foodstock # The folder where your project is supposed to be after running ng build by the action.
 
 permissions:
