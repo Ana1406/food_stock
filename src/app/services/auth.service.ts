@@ -3,7 +3,6 @@ import {
   AuthChangeEvent,
   Session,
   SignInWithPasswordCredentials,
-  SignUpWithPasswordCredentials,
 } from '@supabase/supabase-js';
 import { SupabaseService } from '../supabase.service';
 import { UserSignUpDto } from '../../types';

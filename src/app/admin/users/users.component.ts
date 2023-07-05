@@ -15,15 +15,14 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  
-  createUser: FormGroup | any;
+  public createUser: FormGroup;
   isCreatedUser = false;
   toggleTabBtnUsers = false;
   toogleTabAddUsers = false;
   isOpenCreateUserDialog = false;
   mensage: any;
   option: any;
-  listUsers: any[] = [];
+  listUsers = [];
   tableOptions = {
     columns: {
       name: {

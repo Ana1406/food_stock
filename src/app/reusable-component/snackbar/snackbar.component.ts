@@ -7,10 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SnackbarComponent implements OnInit {
   @Input()
-  background: String = '';
+  background = '';
 
   @Input()
-  mensageOption: String = '';
+  mensageOption = '';
 
   @Input()
   optionsMensage = {

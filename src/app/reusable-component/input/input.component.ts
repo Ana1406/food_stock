@@ -22,7 +22,7 @@ export class InputComponent {
   error = false;
 
   @Input()
-  control!: FormControl;
+  control: FormControl;
 
   @Input()
   color: Colors = 'bg-slate-200/50';
