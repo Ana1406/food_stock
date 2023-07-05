@@ -1,10 +1,4 @@
-import {
-  Component,
-  ContentChildren,
-  Input,
-  OnInit,
-  QueryList,
-} from '@angular/core';
+import { Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { TableRowDirective } from 'src/app/reusable-component/directives/table-row.directive';
 import { TableOptions } from 'src/types';
 
@@ -13,7 +7,7 @@ import { TableOptions } from 'src/types';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
 })
-export class TableComponent<TItem extends object> implements OnInit {
+export class TableComponent<TItem extends object> {
   @ContentChildren(TableRowDirective)
   tableRows?: QueryList<TableRowDirective>;
 
@@ -27,15 +21,13 @@ export class TableComponent<TItem extends object> implements OnInit {
     return Object.keys(this.options.columns);
   }
 
-  ngOnInit() {}
-
   findRow(columnName: string) {
     const column = this.tableRows?.find((i) => i.appTableRow === columnName);
     if (column) return column.element;
     return null;
   }
 
-  rowKeys(row: any) {
+  rowKeys(row: TItem) {
     return new Set([...Object.keys(row), ...this.headers]);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SupabaseService } from 'src/app/supabase.service';
 import {
   FormBuilder,
@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-  form: FormGroup | any;
+export class LoginComponent implements OnInit {
+  form: FormGroup;
 
   loading = false;
 
@@ -22,10 +22,15 @@ export class LoginComponent {
     private fb: FormBuilder,
     private supabaseService: SupabaseService,
     private router: Router
-  ) {
-    this.form = fb.group({
-      userName: new FormControl('', [Validators.required, Validators.email]),
-      password: ['', [Validators.required, Validators.minLength(6)]],
+  ) {}
+
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      userName: this.fb.control('', [Validators.required, Validators.email]),
+      password: this.fb.control('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
 

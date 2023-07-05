@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PermissionService } from 'src/app/services/permission.service';
 
 @Component({
@@ -13,13 +8,13 @@ import { PermissionService } from 'src/app/services/permission.service';
   styleUrls: ['./permission.component.css'],
 })
 export class PermissionComponent implements OnInit {
-  createPermission: FormGroup | any;
+  createPermission: FormGroup;
   toggleTabBtnPermission = false;
   isOpenCreatePermissionDialog = false;
-  listPermission: any[] = [];
+  listPermission = [];
   mensage: any;
   option: any;
-  isCreatedUser: boolean = false;
+  isCreatedUser = false;
 
   tableOptions = {
     columns: {

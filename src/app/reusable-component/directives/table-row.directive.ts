@@ -4,6 +4,6 @@ import { Directive, Input, inject, TemplateRef } from '@angular/core';
   selector: 'ng-template[appTableRow]',
 })
 export class TableRowDirective {
-  @Input() appTableRow: string = '';
+  @Input() appTableRow = '';
   element = inject(TemplateRef);
 }
