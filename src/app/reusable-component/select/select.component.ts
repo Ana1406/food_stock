@@ -4,32 +4,28 @@ import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.css']
+  styleUrls: ['./select.component.css'],
 })
 export class SelectComponent {
-
-  
   @Input()
   control!: FormControl;
 
- 
-
-  optionsSelect=[
+  optionsSelect = [
     {
-      value:'null',
-      option:'Seleccionar tipo de Permisos',
+      value: 'null',
+      option: 'Seleccionar tipo de Permisos',
     },
     {
-      value:'admin',
-      option:'Administrador'
+      value: 'admin',
+      option: 'Administrador',
     },
     {
-      value:'visual',
-      option:'Usuario "Visualización"'
+      value: 'visual',
+      option: 'Usuario "Visualización"',
     },
     {
-      value:'editor',
-      option:'Usuario "Edición"'
+      value: 'editor',
+      option: 'Usuario "Edición"',
     },
-  ]
+  ];
 }

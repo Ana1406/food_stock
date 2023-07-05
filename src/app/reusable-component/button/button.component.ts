@@ -14,19 +14,19 @@ type BackgroundColor =
 })
 export class ButtonComponent {
   @Input()
-  disabled: boolean = false;
+  disabled = false;
 
   @Input()
   color: BackgroundColor = 'bg-lime-700/50';
 
   @Input()
-  border: String = '';
+  border = '';
 
   @Input()
-  font: String = '';
+  font = '';
 
   @Input()
-  hover: string = '';
+  hover = '';
 
   get currentColor() {
     if (this.disabled) return 'bg-slate-200/50';
