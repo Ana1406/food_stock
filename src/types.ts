@@ -12,5 +12,9 @@ export type Pagination = {
 };
 
 export type TableOptions = {
-  columns: any;
+  columns: {
+    [key: string]: {
+      title: string;
+    };
+  };
 };

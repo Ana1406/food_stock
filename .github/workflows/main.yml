@@ -8,7 +8,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Replace secret
+        uses: cschleiden/replace-tokens@v1
+        with:
+          tokenPrefix: "{"
+          tokenSuffix: "}"
+          files: "src/environments/environment.ts"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+      # - uses: actions/checkout@v3
       - name: Angular Deploy gh-pages Actions
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
         with:
@@ -16,7 +26,7 @@ jobs:
           build_configuration: production
           deploy_branch: gh-pages
           base_href: /food_stock/
-          angular_dist_build_folder: dist/foodstock # The folder where your project is supposed to be after running ng build by the action.
+          angular_dist_build_folder: dist/foodstock
 
 permissions:
-  contents: write # Allow write permission to GITHUB_TOKEN to commit to deploy branch.
+  contents: write
