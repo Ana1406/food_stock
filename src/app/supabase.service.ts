@@ -9,7 +9,7 @@ import {
   SupabaseClient,
   User,
 } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 export interface Profile {
   id?: string;
