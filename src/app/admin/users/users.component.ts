@@ -8,6 +8,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { UserService } from 'src/app/services/user.service';
+import { Permission, TableOptions, User } from 'src/types';
 
 @Component({
   selector: 'app-users',
@@ -22,8 +23,8 @@ export class UsersComponent implements OnInit {
   isOpenCreateUserDialog = false;
   mensage: any;
   option: any;
-  listUsers = [];
-  tableOptions = {
+  listUsers: User[] = [];
+  tableOptions: TableOptions = {
     columns: {
       name: {
         title: 'Nombre',
@@ -33,9 +34,17 @@ export class UsersComponent implements OnInit {
       },
       permission: {
         title: 'Permisos',
+        align: 'left',
+        width: '250px',
       },
       created_at: {
         title: 'Fecha de registro',
+        width: '200px',
+      },
+    },
+    body: {
+      permission: {
+        align: 'left',
       },
     },
   };
@@ -57,16 +66,8 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers({ page: 0, limit: 20 }).then((data) => {
+      this.listUsers = data;
       console.log(data);
-      data.data?.forEach((infoUser) => {
-        const objectUser = {
-          name: infoUser['user_name'],
-          email: infoUser['email'],
-          permission: infoUser['permission'],
-          created_at: infoUser['created_at'],
-        };
-        this.listUsers.push(objectUser);
-      });
     });
 
     this.permissionService
@@ -112,7 +113,7 @@ export class UsersComponent implements OnInit {
     this.isOpenCreateUserDialog = true;
   }
 
-  permissionNames(permissions: any[]) {
+  permissionNames(permissions: Permission[]) {
     return permissions.map((i) => i.name).join(',');
   }
 }
