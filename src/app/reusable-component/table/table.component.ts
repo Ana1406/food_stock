@@ -17,6 +17,9 @@ export class TableComponent<TItem extends object> {
   @Input()
   data: TItem[] = [];
 
+  defaultColumnWidth = '225px';
+  defaultTdAlign = 'center';
+
   get headers() {
     return Object.keys(this.options.columns);
   }
@@ -27,7 +30,25 @@ export class TableComponent<TItem extends object> {
     return null;
   }
 
-  rowKeys(row: TItem) {
-    return new Set([...Object.keys(row), ...this.headers]);
+  headerStyles(columnName: string) {
+    return {
+      minWidth:
+        this.options?.columns && this.options?.columns[columnName]
+          ? this.options?.columns[columnName]?.width
+          : this.defaultColumnWidth,
+      textAlign:
+        this.options?.columns && this.options?.columns[columnName]
+          ? this.options?.columns[columnName].align
+          : this.defaultTdAlign,
+    };
+  }
+
+  rowStyles(columnName: string) {
+    return {
+      textAlign:
+        this.options?.body && this.options?.body[columnName]
+          ? this.options?.body[columnName]?.align
+          : this.defaultTdAlign,
+    };
   }
 }

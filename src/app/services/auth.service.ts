@@ -4,7 +4,7 @@ import {
   Session,
   SignInWithPasswordCredentials,
 } from '@supabase/supabase-js';
-import { SupabaseService } from '../supabase.service';
+import { SupabaseService } from './supabase.service';
 import { UserSignUpDto } from '../../types';
 
 @Injectable({
