@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   mensage: any;
   option: any;
   listUsers: User[] = [];
+  permissions: Permission[] = [];
   tableOptions: TableOptions = {
     columns: {
       name: {
@@ -60,35 +61,32 @@ export class UsersComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
       email: ['', Validators.required, Validators.email],
-      permission: new FormControl(null),
+      permission: [''],
     });
   }
 
   ngOnInit() {
-    this.userService.getUsers({ page: 0, limit: 20 }).then((data) => {
+    this.userService.getUsers({ page: 0, limit: 40 }).then((data) => {
       this.listUsers = data;
       console.log(data);
     });
 
     this.permissionService
-      .getPermissions({ page: 0, limit: 10 })
+      .getPermissions({ page: 0, limit: 30 })
       .then((data) => {
-        data.data?.forEach((infoUserPermission) => {
-          const infoPermission = infoUserPermission[''];
-        });
+        this.permissions = data;
       });
   }
 
   async register() {
     const registerData = this.createUser.getRawValue();
-
+    console.log(this.createUser.get('permission').value);
     try {
       await this.authService.signUp({
         email: registerData.email,
         password: registerData.password,
         name: registerData.name,
-        permissions: [1],
-        // permissions: registerData.permission,
+        permissions: this.createUser.get('permission').value,
       });
       this.mensage = 'Creacion de Usuario realizado con exito';
       this.option = 'success';
