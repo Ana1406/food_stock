@@ -10,7 +10,9 @@ import { DialogComponent } from './dialog/dialog.component';
 import { SelectComponent } from './select/select.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TableRowDirective } from './directives/table-row.directive';
+import { IsLoadingDirective } from './directives/is-loading.directive';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     TabsComponent,
     TableRowDirective,
     SnackbarComponent,
+    SpinnerComponent,
+    IsLoadingDirective,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   exports: [
@@ -34,7 +38,9 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     SelectComponent,
     TabsComponent,
     TableRowDirective,
+    IsLoadingDirective,
     SnackbarComponent,
+    SpinnerComponent,
   ],
 })
 export class ReusableComponentModule {}
