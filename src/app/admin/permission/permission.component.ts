@@ -15,6 +15,7 @@ export class PermissionComponent implements OnInit {
   mensage: any;
   option: any;
   isCreatedUser = false;
+  isLoading = true;
 
   tableOptions = {
     columns: {
@@ -45,6 +46,7 @@ export class PermissionComponent implements OnInit {
       .getPermissions({ page: 0, limit: 10 })
       .then((data) => {
         this.listPermission = data;
+        this.isLoading = false;
       });
   }
 
