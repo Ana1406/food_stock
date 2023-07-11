@@ -1,36 +1,44 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { PermissionService } from 'src/app/services/permission.service';
-import { Permission } from 'src/types';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css'],
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent<T extends object> {
   optionsSelect = [];
   isOpenSelect = false;
 
   @Input()
-  control!: FormControl;
+  control: FormControl;
 
   @Input()
-  options: Permission;
+  options: T[];
+
+  @Input()
+  placeholder = '';
 
   @Input()
   optionsSelected = [];
 
   @Input()
-  name = '';
+  labelKey = '';
 
-  constructor(private permissionService: PermissionService) {}
+  @Input()
+  multiple = false;
 
-  ngOnInit() {
-    this.optionsSelect.push(this.options.name);
+  get selectedLabels() {
+    if (this.control.value?.length === 0 || this.control.value === '')
+      return this.placeholder;
+
+    if (this.multiple && typeof this.control.value === 'object')
+      return this.control.value.map((i) => i[this.labelKey]).join(',');
+
+    return this.control.value;
   }
 
   openSelect() {
-    this.isOpenSelect = this.optionsSelected.length > 0 ? false : true;
+    this.isOpenSelect = !this.isOpenSelect;
   }
 }

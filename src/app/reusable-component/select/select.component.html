@@ -1,26 +1,20 @@
-<div class="relative">
-  <div
-    class="flex flex-row justify-between bg-slate-200/50 px-2 py-2 mt-3.5 sm:mx-auto w-auto rounded-lg border-2 border-lime-800"
-  >
-    <h2>
-      {{ optionsSelected == [] ? "Seleccione los Permisos" : optionsSelected }}
-    </h2>
+<div
+  class="container bg-slate-200/50 px-2 py-2 mt-3.5 sm:mx-auto w-52 rounded-lg border-2 border-lime-800"
+>
+  <div class="flex flex-row justify-between truncate">
+    {{ selectedLabels }}
+
     <span class="material-icons text-slate-500" (click)="openSelect()">
       {{ isOpenSelect ? "expand_less" : "expand_more" }}
     </span>
   </div>
-
   <select
+    class="fixed mt-2.5 flex flex-col items-start bg-slate-200/50"
     *ngIf="isOpenSelect"
     [formControl]="control"
-    class="fixed w-auto px-2 mx-5 py-3 bg-slate-200/50 rounded-lg font-thin text-sm text-gray-800"
-    multiple
+    [multiple]="multiple"
   >
-    <option
-      *ngFor="let option of options"
-      [value]="option.id"
-      [select]="select"
-    >
+    <option [value]="option" *ngFor="let option of options">
       {{ option.name }}
     </option>
   </select>

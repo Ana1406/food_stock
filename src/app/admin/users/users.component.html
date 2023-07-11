@@ -8,7 +8,7 @@
     </app-button>
   </div>
   <div
-    class="w-auto mx-auto sm:mx-auto sm:w-92 sm:max-w-sm sm:overflow-x-auto md:mx-auto md:w-92 md:max-w-md md:overflow-x-none lg:mx-auto lg:w-full lg:max-w-xl xl:mx-auto xl:w-full xl:max-w-2xl"
+    class="w-auto mx-auto sm:mx-auto sm:w-92 sm:max-w-sm sm:overflow-x-auto md:mx-auto md:w-92 md:max-w-md md:overflow-x-auto lg:w-1/2 lg:mx-auto lg:max-w-3xl xl:max-w-xl"
   >
     <app-table [options]="tableOptions" [data]="listUsers">
       <ng-template appTableRow="created_at" let-row>
@@ -92,8 +92,10 @@
         <app-select
           [control]="createUser.get('permission')"
           [options]="permissions"
+          placeholder="Seleccio"
           [optionsSelected]="createUser.get('permission').value"
-          [name]=""
+          [multiple]="true"
+          labelKey="name"
         ></app-select>
 
         <div class="flex justify-end" footer>

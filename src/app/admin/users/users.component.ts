@@ -68,7 +68,6 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers({ page: 0, limit: 40 }).then((data) => {
       this.listUsers = data;
-      console.log(data);
     });
 
     this.permissionService
@@ -88,12 +87,12 @@ export class UsersComponent implements OnInit {
         name: registerData.name,
         permissions: this.createUser.get('permission').value,
       });
+
       this.mensage = 'Creacion de Usuario realizado con exito';
       this.option = 'success';
     } catch (error) {
       this.mensage = error;
       this.option = 'error';
-      console.log(this.mensage);
     }
     this.isCreatedUser = true;
     setTimeout(() => {
