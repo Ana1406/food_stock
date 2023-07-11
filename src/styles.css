@@ -3,9 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'material-icons/iconfont/material-icons.css';
+@import "material-icons/iconfont/material-icons.css";
 
-@layer components{
+@layer components {
+}
 
+.spinner-backdrop-component {
+  @apply absolute
+  top-2/4
+  right-2/4;
+}
 
+.spinner-backdrop {
+  @apply absolute
+  bg-gray-300
+  opacity-60
+  top-0
+  left-0
+  right-0
+  bottom-0;
 }

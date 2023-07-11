@@ -15,6 +15,7 @@ export class PermissionComponent implements OnInit {
   mensage: any;
   option: any;
   isCreatedUser = false;
+  isLoading = true;
 
   tableOptions = {
     columns: {
@@ -44,14 +45,8 @@ export class PermissionComponent implements OnInit {
     this.permissionService
       .getPermissions({ page: 0, limit: 10 })
       .then((data) => {
-        data.data?.forEach((infoPermission, index) => {
-          const objectPermission = {
-            name: infoPermission['name'],
-            description: infoPermission['description'],
-            created_at: infoPermission['created_at'],
-          };
-          this.listPermission.push(objectPermission);
-        });
+        this.listPermission = data;
+        this.isLoading = false;
       });
   }
 

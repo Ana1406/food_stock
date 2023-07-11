@@ -1,33 +1,39 @@
-<table
-  class="table-auto border-separate border-spacing-1 border border-gray-400"
->
-  <thead>
-    <tr>
-      <th
-        *ngFor="let column of headers"
-        class="border border-sky-300 px-3 font-medium"
+<div class="drop-shadow-xl">
+  <table class="table-auto">
+    <thead>
+      <tr class="bg-gradient-to-r from-cyan-500 to-emerald-500">
+        <th
+          *ngFor="let column of headers"
+          class="text-white px-4 py-3 font-medium"
+          [ngStyle]="headerStyles(column)"
+        >
+          {{ options.columns[column].title }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let row of data; let i = index"
+        class="font-thin even:bg-neutral-100 odd:bg-zinc-100 hover:bg-zinc-200 hover:text-teal-500"
       >
-        {{ options.columns[column].title }}
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="let row of data"
-      class="text-center even:bg-gray-100 odd:bg-sky-200/50"
-    >
-      <td
-        *ngFor="let property of rowKeys(row)"
-        class="border border-sky-300 px-3 font-thin"
-      >
-        <ng-container
-          [ngTemplateOutlet]="findRow(property) || defaultRow"
-          [ngTemplateOutletContext]="{ $implicit: row, property }"
-        ></ng-container>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <td
+          *ngFor="let property of headers"
+          class="border border-y-stone-300 border-x-0 px-4 py-3"
+          [class]="{
+            'border-b-teal-500': i === data.length - 1,
+            'border-b-4': i === data.length - 1
+          }"
+          [ngStyle]="rowStyles(property)"
+        >
+          <ng-container
+            [ngTemplateOutlet]="findRow(property) || defaultRow"
+            [ngTemplateOutletContext]="{ $implicit: row, property }"
+          ></ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <ng-template #defaultRow let-row let-property="property">
   {{ row[property] }}

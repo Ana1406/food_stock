@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SupabaseService } from '../supabase.service';
-import { Pagination } from 'src/types';
+import { SupabaseService } from './supabase.service';
+import { Pagination, Permission } from 'src/types';
 import { getQueryRange } from '../helpers/paginations';
 
 @Injectable({
@@ -9,13 +9,17 @@ import { getQueryRange } from '../helpers/paginations';
 export class PermissionService {
   constructor(private supabaseService: SupabaseService) {}
 
-  getPermissions(pagination: Pagination) {
+  async getPermissions(pagination: Pagination) {
     const { start, end } = getQueryRange(pagination);
-    return this.supabaseService.supabase
+    const { data, error } = await this.supabaseService.supabase
       .from('permission')
       .select('*')
       .range(start, end)
       .limit(pagination.limit);
+
+    if (error) throw new Error(error.message);
+
+    return data as Permission[];
   }
 
   create(name: string, description: string) {

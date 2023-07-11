@@ -8,6 +8,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { PermissionService } from 'src/app/services/permission.service';
 import { UserService } from 'src/app/services/user.service';
+import { Permission, TableOptions, User } from 'src/types';
 
 @Component({
   selector: 'app-users',
@@ -22,8 +23,9 @@ export class UsersComponent implements OnInit {
   isOpenCreateUserDialog = false;
   mensage: any;
   option: any;
-  listUsers = [];
-  tableOptions = {
+  listUsers: User[] = [];
+  permissions: Permission[] = [];
+  tableOptions: TableOptions = {
     columns: {
       name: {
         title: 'Nombre',
@@ -33,9 +35,17 @@ export class UsersComponent implements OnInit {
       },
       permission: {
         title: 'Permisos',
+        align: 'left',
+        width: '250px',
       },
       created_at: {
         title: 'Fecha de registro',
+        width: '200px',
+      },
+    },
+    body: {
+      permission: {
+        align: 'left',
       },
     },
   };
@@ -51,50 +61,38 @@ export class UsersComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
       email: ['', Validators.required, Validators.email],
-      permission: new FormControl(null),
+      permission: [''],
     });
   }
 
   ngOnInit() {
-    this.userService.getUsers({ page: 0, limit: 20 }).then((data) => {
-      console.log(data);
-      data.data?.forEach((infoUser) => {
-        const objectUser = {
-          name: infoUser['user_name'],
-          email: infoUser['email'],
-          permission: infoUser['permission'],
-          created_at: infoUser['created_at'],
-        };
-        this.listUsers.push(objectUser);
-      });
+    this.userService.getUsers({ page: 0, limit: 40 }).then((data) => {
+      this.listUsers = data;
     });
 
     this.permissionService
-      .getPermissions({ page: 0, limit: 10 })
+      .getPermissions({ page: 0, limit: 30 })
       .then((data) => {
-        data.data?.forEach((infoUserPermission) => {
-          const infoPermission = infoUserPermission[''];
-        });
+        this.permissions = data;
       });
   }
 
   async register() {
     const registerData = this.createUser.getRawValue();
-
+    console.log(this.createUser.get('permission').value);
     try {
       await this.authService.signUp({
         email: registerData.email,
         password: registerData.password,
         name: registerData.name,
-        permissions: [1],
-        // permissions: registerData.permission,
+        permissions: this.createUser.get('permission').value,
       });
+
       this.mensage = 'Creacion de Usuario realizado con exito';
       this.option = 'success';
     } catch (error) {
       this.mensage = error;
       this.option = 'error';
-      console.log(this.mensage);
     }
     this.isCreatedUser = true;
     setTimeout(() => {
@@ -112,7 +110,7 @@ export class UsersComponent implements OnInit {
     this.isOpenCreateUserDialog = true;
   }
 
-  permissionNames(permissions: any[]) {
+  permissionNames(permissions: Permission[]) {
     return permissions.map((i) => i.name).join(',');
   }
 }

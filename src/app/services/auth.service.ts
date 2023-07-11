@@ -4,7 +4,7 @@ import {
   Session,
   SignInWithPasswordCredentials,
 } from '@supabase/supabase-js';
-import { SupabaseService } from '../supabase.service';
+import { SupabaseService } from './supabase.service';
 import { UserSignUpDto } from '../../types';
 
 @Injectable({
@@ -45,6 +45,7 @@ export class AuthService {
     if (userError) throw userError;
     if (user) {
       userDto.permissions.forEach(async (permission_id) => {
+        console.log(permission_id);
         await this.supabaseService.supabase.from('user_permission').insert({
           user_id: user[0]['id'],
           permission_id,
