@@ -1,9 +1,21 @@
-<select
-  name="permission"
-  [formControl]="control"
-  class="w-64 px-2 py-3 bg-slate-200/50 rounded-lg font-thin text-sm text-gray-800"
+<div
+  class="container bg-slate-200/50 px-2 py-2 mt-3.5 sm:mx-auto w-52 rounded-lg border-2 border-lime-800"
 >
-  <option *ngFor="let option of optionsSelect" [value]="option.value">
-    {{ option.option }}
-  </option>
-</select>
+  <div class="flex flex-row justify-between truncate">
+    {{ selectedLabels }}
+
+    <span class="material-icons text-slate-500" (click)="openSelect()">
+      {{ isOpenSelect ? "expand_less" : "expand_more" }}
+    </span>
+  </div>
+  <select
+    class="fixed mt-2.5 flex flex-col items-start bg-slate-200/50"
+    *ngIf="isOpenSelect"
+    [formControl]="control"
+    [multiple]="multiple"
+  >
+    <option [value]="option" *ngFor="let option of options">
+      {{ option.name }}
+    </option>
+  </select>
+</div>

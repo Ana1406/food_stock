@@ -9,8 +9,8 @@ import {
 } from '@angular/forms';
 
 describe('SelectComponent', () => {
-  let component: SelectComponent;
-  let fixture: ComponentFixture<SelectComponent>;
+  let component: SelectComponent<any>;
+  let fixture: ComponentFixture<SelectComponent<any>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
