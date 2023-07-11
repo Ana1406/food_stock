@@ -11,9 +11,13 @@
       <span class="material-icons text-sky-500"> add_task </span>
     </app-button>
   </div>
+  {{ isLoading }}
   <div
+    [appIsLoading]="isLoading"
     class="w-auto mx-auto sm:mx-auto sm:w-92 sm:max-w-sm sm:overflow-x-auto md:mx-auto md:w-92 md:max-w-md md:overflow-x-none lg:mx-auto lg:w-full lg:max-w-xl xl:mx-auto xl:w-full xl:max-w-2xl"
   >
+    <!-- <app-spinner></app-spinner> -->
+
     <app-table [options]="tableOptions" [data]="listPermission">
       <ng-template appTableRow="created_at" let-row>
         {{ row.created_at | date }}

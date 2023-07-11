@@ -42,3 +42,5 @@ export type TableOptions = {
     };
   };
 };
+
+export type SpinnerSize = 'small' | 'medium' | 'large';
