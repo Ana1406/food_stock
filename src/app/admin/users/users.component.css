@@ -34,7 +34,9 @@
     md:max-w-md 
     md:overflow-x-auto 
     lg:mx-auto
-    lg:max-w-3xl 
+    lg:w-[782px]
+    lg:max-w-3xl
+    xl:w-[786px] 
     xl:max-w-3xl 
     xl:mx-auto
 }
