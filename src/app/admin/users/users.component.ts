@@ -123,6 +123,7 @@ export class UsersComponent implements OnInit {
     }, 10000);
     this.createUser.reset();
     this.closeAdd();
+    this.getUsers();
   }
 
   closeAdd() {

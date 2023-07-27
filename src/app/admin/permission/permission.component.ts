@@ -14,7 +14,7 @@ export class PermissionComponent implements OnInit {
   listPermission = [];
   mensage: any;
   option: any;
-  isCreatedUser = false;
+  isCreatedPermission = false;
   isLoading = true;
   totalData = 0;
   pageActual = 0;
@@ -82,12 +82,13 @@ export class PermissionComponent implements OnInit {
       this.mensage = error;
       this.option = 'error';
     }
-    this.isCreatedUser = true;
+    this.isCreatedPermission = true;
     setTimeout(() => {
-      this.isCreatedUser = false;
-    }, 10000);
+      this.isCreatedPermission = false;
+    }, 5000);
     this.createPermission.reset();
     this.closeAdd();
+    this.getPermissions();
   }
 
   closeAdd() {

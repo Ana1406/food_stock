@@ -1,8 +1,12 @@
 <div class="mx-20 my-5">
   <h3 class="font-thin text-2xl text-gray-800">Gestion de Permisos</h3>
   <div
-    class="flex flex-row justify-end mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
+    class="flex flex-row justify-between items-center mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
   >
+    <p class="text-center font-thin underline-offset-2">
+      Total de Permisos: {{ totalData }}
+    </p>
+
     <app-button
       (click)="clickPermissionAdd()"
       color="bg-stone-200/50"
@@ -91,7 +95,7 @@
     [total]="totalData"
     (pageChange)="changePage($event)"
   ></app-pagination>
-  <app-snackbar [background]="option" *ngIf="isCreatedUser">
+  <app-snackbar [background]="option" *ngIf="isCreatedPermission">
     <div header></div>
     <div>
       <h1>{{ mensage }}</h1>

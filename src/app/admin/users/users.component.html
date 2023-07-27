@@ -1,8 +1,9 @@
 <div class="mx-20 my-5">
   <h3 class="font-thin text-2xl text-gray-800">Gestion de Usuarios</h3>
   <div
-    class="flex flex-row justify-end mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
+    class="flex flex-row justify-between items-center mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
   >
+    <p class="text-center">Total de Usuarios: {{ totalData }}</p>
     <app-button (click)="clickAdd()" color="bg-stone-200/50" [border]="'full'">
       <span class="material-icons text-sky-500"> person_add </span>
     </app-button>
