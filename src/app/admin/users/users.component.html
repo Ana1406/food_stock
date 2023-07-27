@@ -1,15 +1,15 @@
 <div class="mx-20 my-5">
-  <h3 class="font-thin text-gray-800">Gestion de Usuarios</h3>
+  <h3 class="font-thin text-2xl text-gray-800">Gestion de Usuarios</h3>
   <div
-    class="flex flex-row justify-end mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
+    class="flex flex-row justify-between items-center mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
   >
+    <p class="text-center">Total de Usuarios: {{ totalData }}</p>
     <app-button (click)="clickAdd()" color="bg-stone-200/50" [border]="'full'">
       <span class="material-icons text-sky-500"> person_add </span>
     </app-button>
   </div>
-  <div
-    class="w-auto mx-auto sm:mx-auto sm:w-92 sm:max-w-sm sm:overflow-x-auto md:mx-auto md:w-92 md:max-w-md md:overflow-x-auto lg:w-1/2 lg:mx-auto lg:max-w-3xl xl:max-w-xl"
-  >
+
+  <div class="tableUsers">
     <app-table [options]="tableOptions" [data]="listUsers">
       <ng-template appTableRow="created_at" let-row>
         <p>{{ row.created_at | date }}</p>
@@ -24,9 +24,7 @@
         *ngIf="isOpenCreateUserDialog"
         [title]="'Creacíon de usuario'"
       >
-        <div
-          class="flex sm:flex-col sm:items-center md:flex-col md:items-center lg:flex-row lg:space-x-1 xl:flex-row xl:space-x-1"
-        >
+        <div class="dialogUsers">
           <app-input
             placeholder="Nombre"
             type="text"
@@ -64,9 +62,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="flex sm:flex-col sm:items-center md:flex-col md:items-center lg:flex-row lg:space-x-2 xl:flex-row xl:space-x-2"
-        >
+        <div class="dialogUsers2">
           <app-input
             placeholder="ID"
             type="text"
@@ -117,6 +113,12 @@
       </app-dialog>
     </form>
   </div>
+  <app-pagination
+    [pageActual]="pageActual"
+    [limit]="limit"
+    [total]="totalData"
+    (pageChange)="changePage($event)"
+  ></app-pagination>
   <app-snackbar [background]="option" *ngIf="isCreatedUser">
     <div header></div>
     <div>

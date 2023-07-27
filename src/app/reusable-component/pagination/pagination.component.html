@@ -1,0 +1,31 @@
+<div class="paginationTab">
+  <app-button
+    (click)="changePage(pageActual - 1)"
+    [border]="'large'"
+    color="bg-transparent"
+    [font]="'thin'"
+    [disabled]="pageActual === 0"
+  >
+    <span class="material-icons mx-auto font-thin"> arrow_back_ios </span>
+  </app-button>
+  <div class="flex flex-row space-x-2" *ngFor="let number of numberPages">
+    <app-button
+      (click)="changePage(number - 1)"
+      [ngClass]="{ 'bg-blue-200': number - 1 === pageActual }"
+      class="rounded-lg"
+      color="bg-transparent"
+      [font]="'normal'"
+      >{{ number }}</app-button
+    >
+  </div>
+
+  <app-button
+    (click)="changePage(pageActual + 1)"
+    [border]="'large'"
+    color="bg-transparent"
+    [font]="'thin'"
+    [disabled]="pageActual === totalPages() || pageActual === totalPages() - 1"
+  >
+    <span class="material-icons mx-auto font-thin"> arrow_forward_ios </span>
+  </app-button>
+</div>

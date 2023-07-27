@@ -22,6 +22,16 @@ export class PermissionService {
     return data as Permission[];
   }
 
+  async getTotalPermissions(): Promise<number> {
+    const { count, error } = await this.supabaseService.supabase
+      .from('permission')
+      .select('*', { count: 'exact', head: true });
+
+    if (error) throw new Error(error.message);
+
+    return count;
+  }
+
   create(name: string, description: string) {
     return this.supabaseService.supabase.from('permission').insert({
       name,

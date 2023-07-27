@@ -20,4 +20,14 @@ export class UserService {
     if (error) throw new Error(error.message);
     return data as User[];
   }
+
+  async getTotalUsers(): Promise<number> {
+    const { count, error } = await this.supabaseService.supabase
+      .from('user')
+      .select('*', { count: 'exact', head: true });
+
+    if (error) throw new Error(error.message);
+
+    return count;
+  }
 }
