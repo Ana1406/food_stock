@@ -16,7 +16,7 @@ export class PermissionComponent implements OnInit {
   option: any;
   isCreatedUser = false;
   isLoading = true;
-  totalData: number;
+  totalData = 0;
   pageActual = 0;
   limit = 10;
   page: number;

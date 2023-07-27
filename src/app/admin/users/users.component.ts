@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
 
   mensage: any;
   option: any;
-  totalData: number;
+  totalData = 0;
   pageActual = 0;
   limit = 10;
   page: number;

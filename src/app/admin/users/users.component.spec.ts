@@ -16,6 +16,7 @@ describe('UsersComponent', () => {
 
     fixture = TestBed.createComponent(UsersComponent);
     component = fixture.componentInstance;
+    component.pageActual = 1;
     fixture.detectChanges();
   });
 
