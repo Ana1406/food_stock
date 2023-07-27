@@ -19,3 +19,36 @@
     border-b-2
     border-gray-500
 }
+
+.tablePermissions{
+    @apply
+    w-auto 
+    mx-auto 
+    sm:mx-auto 
+    sm:w-[432px] 
+    sm:max-w-md 
+    sm:overflow-x-auto 
+    md:mx-auto 
+    md:w-[532px] 
+    md:max-w-md 
+    md:overflow-x-none 
+    lg:mx-auto 
+    lg:w-full 
+    lg:max-w-xl 
+    xl:mx-auto 
+    xl:w-full 
+    xl:max-w-2xl
+}
+
+.dialogPermissions{
+    @apply
+    flex 
+    sm:flex-col 
+    sm:items-center 
+    md:flex-col 
+    md:items-center 
+    lg:flex-row 
+    lg:space-x-1 
+    xl:flex-row 
+    xl:space-x-1
+}

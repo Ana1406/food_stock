@@ -1,0 +1,5 @@
+.borderRing{
+    @apply
+    ring-2
+    ring-lime-700
+}

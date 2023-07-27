@@ -1,21 +1,18 @@
 <!--Menu no expandido -->
-<nav
-  *ngIf="!isNavBarExpanded; else navExpanded"
-  class="flex flex-col items-center h-screen bg-stone-50 ml-0.5 border-r-2 border-gray-500 w-24 sm:w-20 md:w-20 lg:w-24 xl:w-24"
->
-  <img src="assets/logo-op2.png" alt="logo" class="w-12 h-10 my-8" />
+<nav *ngIf="!isNavBarExpanded; else navExpanded" class="noExpanded">
+  <img src="assets/logo-op2.png" alt="logo" class="h-12 my-8" />
 
   <ul
     *ngFor="let item of listRoutes"
     class="my-4 flex flex-col justify-center items-center"
   >
     <li>
-      <p class="text-xs text-center font-semibold text-gray-500 uppercase">
+      <p class="titleItems">
         {{ item.textShort }}
       </p>
 
       <ul
-        class="my-1 flex justify-center items-center"
+        class="my-2 flex justify-center items-center"
         *ngFor="let text of item.routes"
       >
         <app-button
@@ -38,27 +35,11 @@
     [border]="'full'"
     color="bg-transparent"
     class="mt-10"
-    [hover]="'logOut'"
+    [hover]="'normal'"
   >
     <span class="material-icons text-center text-gray-500">logout</span>
   </app-button>
-  <app-dialog *ngIf="isDialogOpen" [title]="'Cerrar Sesion'">
-    Seguro desea cerrar sesion?
-    <div class="flex justify-end space-x-3" footer>
-      <app-button
-        (click)="toggleDialog()"
-        [border]="'large'"
-        color="bg-stone-200/50"
-        [hover]="'normal'"
-      >
-        <span class="material-icons text-center">close</span></app-button
-      >
-      <app-button (click)="signOut()" color="bg-red-500" [border]="'large'"
-        >Cerrar Sesion
-        <span class="material-icons text-center ml-2">logout</span></app-button
-      >
-    </div>
-  </app-dialog>
+
   <app-button [border]="'full'" color="bg-transparent" [hover]="'normal'">
     <span class="material-icons text-center text-gray-500">account_box</span>
   </app-button>
@@ -73,30 +54,34 @@
 </nav>
 <!--Menu expandido -->
 <ng-template #navExpanded>
-  <nav
-    class="flex flex-col bg-stone-50 h-full border-r-2 border-gray-500 w-60 sm:w-52 md:w-52 lg:w-60 xl:w-60"
-  >
-    <div
-      class="flex flex-row shrink items-center my-3.5 mx-3 bg-blue-700/20 shadow-lg rounded-lg w-auto"
-    >
-      <img src="assets/logo-op2.png" alt="logo" class="w-1/4 my-1.5" />
-      <h1 class="text-sm sm:text-xs md:text-xs ml-2.5 text-start font-normal">
-        Bienvenido {{ userName }}
-      </h1>
+  <nav class="expanded">
+    <div class="boxExpanded">
+      <img src="assets/logo-op2.png" alt="logo" class="h-12 shrink-0" />
+      <div class="text-center sm:text-left">
+        <h1
+          class="sm:text-sm md:text-base lg:text-base xl:text-base font-semibold"
+        >
+          Bienvenido
+        </h1>
+        <p
+          class="font-medium text-gray-500 text-center sm:text-sm md:text-base lg:text-base xl:text-lg"
+        >
+          {{ userName }}
+        </p>
+      </div>
     </div>
-
-    <ul *ngFor="let item of listRoutes" class="items-start my-3">
-      <li class="py-2.5 text-start mx-5 uppercase font-medium text-gray-500/40">
+    <ul *ngFor="let item of listRoutes" class="items-start my-2">
+      <li class="titleItemsExpanded">
         {{ item.section }}
       </li>
 
-      <li *ngFor="let text of item.routes" class="my-4 text-start">
+      <li *ngFor="let text of item.routes" class="text-start my-5">
         <div
           class="mx-2 max-w-full bg-transparent hover:bg-blue-200 rounded-lg"
         >
           <app-button
             [routerLink]="text.route"
-            [font]="'thin'"
+            [font]="'normal'"
             color="bg-transparent"
           >
             <span
@@ -108,9 +93,8 @@
         </div>
       </li>
     </ul>
-    <div
-      class="flex justify-center max-w-full w-auto mx-2 bg-transparent hover:bg-red-500 rounded-lg"
-    >
+    <div class="buttonExpanded">
+      <span class="material-icons-outlined text-center my-auto">logout</span>
       <app-button
         [border]="'large'"
         color="bg-transparent"
@@ -118,31 +102,12 @@
         (click)="toggleDialog()"
       >
         Cerrar Sesion
-        <span class="material-icons-outlined text-center ml-2">logout</span>
       </app-button>
-      <app-dialog *ngIf="isDialogOpen" [title]="'Cerrar Sesion'">
-        Seguro desea cerrar sesion?
-        <div class="flex justify-end space-x-3" footer>
-          <app-button
-            (click)="toggleDialog()"
-            [border]="'large'"
-            color="bg-stone-200/50"
-            [hover]="'normal'"
-          >
-            <span class="material-icons text-center">close</span></app-button
-          >
-          <app-button (click)="signOut()" color="bg-red-500" [border]="'large'"
-            >Cerrar Sesion
-            <span class="material-icons text-center ml-2"
-              >logout</span
-            ></app-button
-          >
-        </div>
-      </app-dialog>
     </div>
-    <div
-      class="flex justify-center max-w-full space-x-5 mx-2 bg-transparent hover:bg-blue-200 rounded-lg"
-    >
+    <div class="buttonExpanded">
+      <span class="material-icons-outlined text-center my-auto"
+        >account_box</span
+      >
       <app-button
         [border]="'large'"
         color="bg-transparent"
@@ -150,14 +115,9 @@
         (click)="toggleNavBar()"
       >
         Cuenta
-        <span class="material-icons-outlined text-center ml-2"
-          >account_box</span
-        >
       </app-button>
     </div>
-    <div
-      class="flex justify-center max-w-full w-auto mx-2 bg-transparent hover:bg-blue-200 rounded-lg"
-    >
+    <div class="buttonExpanded">
       <app-button
         [border]="'large'"
         color="bg-transparent"
@@ -169,3 +129,21 @@
     </div>
   </nav>
 </ng-template>
+<app-dialog *ngIf="isDialogOpen" [title]="'Cerrar Sesion'">
+  Seguro desea cerrar sesion?
+  <div class="flex justify-end space-x-3" footer>
+    <app-button
+      (click)="toggleDialog()"
+      [border]="'large'"
+      color="bg-stone-200/50"
+    >
+      <span class="material-icons text-center my-auto mr-1.5">close</span>
+      Cancelar</app-button
+    >
+
+    <app-button (click)="signOut()" color="bg-blue-200" [border]="'large'">
+      <span class="material-icons text-center my-auto mr-1.5">logout</span>
+      Cerrar Sesion</app-button
+    >
+  </div>
+</app-dialog>

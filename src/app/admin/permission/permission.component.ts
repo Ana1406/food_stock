@@ -16,6 +16,10 @@ export class PermissionComponent implements OnInit {
   option: any;
   isCreatedUser = false;
   isLoading = true;
+  totalData: number;
+  pageActual = 0;
+  limit = 10;
+  page: number;
 
   tableOptions = {
     columns: {
@@ -42,14 +46,29 @@ export class PermissionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.permissionService
-      .getPermissions({ page: 0, limit: 10 })
-      .then((data) => {
-        this.listPermission = data;
-        this.isLoading = false;
-      });
+    this.getPermissions();
   }
 
+  changePage(page: number) {
+    this.pageActual = page;
+
+    this.getPermissions();
+  }
+
+  getPermissions() {
+    Promise.all([
+      this.permissionService.getPermissions({
+        page: this.pageActual,
+        limit: this.limit,
+      }),
+      this.permissionService.getTotalPermissions(),
+    ]).then((requests) => {
+      this.listPermission = requests[0];
+      this.totalData = requests[1];
+      this.page = Math.ceil(this.totalData / this.limit);
+      this.isLoading = false;
+    });
+  }
   async permission() {
     const permissionData = this.createPermission.getRawValue();
     try {
