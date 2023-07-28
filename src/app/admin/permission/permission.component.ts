@@ -9,17 +9,21 @@ import { PermissionService } from 'src/app/services/permission.service';
 })
 export class PermissionComponent implements OnInit {
   createPermission: FormGroup;
-  toggleTabBtnPermission = false;
-  isOpenCreatePermissionDialog = false;
+
   listPermission = [];
+
   mensage: any;
   option: any;
+  page: number;
+
   isCreatedPermission = false;
+  toggleTabBtnPermission = false;
+  isOpenCreatePermissionDialog = false;
   isLoading = true;
+
   totalData = 0;
   pageActual = 0;
   limit = 10;
-  page: number;
 
   tableOptions = {
     columns: {
