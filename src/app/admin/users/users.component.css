@@ -19,3 +19,49 @@
     border-b-2
     border-gray-500
 }
+
+.tableUsers{
+    @apply
+    flex flex-row
+    w-auto 
+    mx-auto
+    overflow-y-auto
+    sm:mx-auto 
+    sm:max-w-lg 
+    sm:overflow-x-auto 
+    md:mx-auto 
+    md:w-[600px]
+    md:max-w-lg 
+    md:overflow-x-auto 
+    lg:mx-auto
+    lg:w-[782px]
+    lg:max-w-3xl
+    xl:w-[786px] 
+    xl:max-w-3xl 
+    xl:mx-auto
+}
+
+.dialogUsers{
+    @apply
+    flex 
+    sm:flex-col 
+    sm:items-center 
+    md:flex-col 
+    md:items-center 
+    lg:flex-row 
+    lg:space-x-1 
+    xl:flex-row 
+    xl:space-x-1
+}
+.dialogUsers2{
+    @apply
+    flex 
+    sm:flex-col 
+    sm:items-center 
+    md:flex-col 
+    md:items-center 
+    lg:flex-row 
+    lg:space-x-2 
+    xl:flex-row 
+    xl:space-x-2
+}

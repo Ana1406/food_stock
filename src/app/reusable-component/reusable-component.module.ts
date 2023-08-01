@@ -14,6 +14,7 @@ import { IsLoadingDirective } from './directives/is-loading.directive';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TagComponent } from './tag/tag.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TagComponent } from './tag/tag.component';
     SpinnerComponent,
     IsLoadingDirective,
     TagComponent,
+    PaginationComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   exports: [
@@ -43,6 +45,7 @@ import { TagComponent } from './tag/tag.component';
     IsLoadingDirective,
     SnackbarComponent,
     SpinnerComponent,
+    PaginationComponent,
   ],
 })
 export class ReusableComponentModule {}

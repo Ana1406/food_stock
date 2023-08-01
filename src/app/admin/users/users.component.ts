@@ -17,14 +17,23 @@ import { Permission, TableOptions, User } from 'src/types';
 })
 export class UsersComponent implements OnInit {
   public createUser: FormGroup;
+
   isCreatedUser = false;
   toggleTabBtnUsers = false;
   toogleTabAddUsers = false;
   isOpenCreateUserDialog = false;
+
   mensage: any;
   option: any;
+  page: number;
+
+  totalData = 0;
+  pageActual = 0;
+  limit = 10;
+
   listUsers: User[] = [];
   permissions: Permission[] = [];
+
   tableOptions: TableOptions = {
     columns: {
       name: {
@@ -65,21 +74,37 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.userService.getUsers({ page: 0, limit: 40 }).then((data) => {
-      this.listUsers = data;
-    });
+  changePage(page: number) {
+    this.pageActual = page;
 
+    this.getUsers();
+  }
+
+  ngOnInit() {
+    this.getUsers();
     this.permissionService
-      .getPermissions({ page: 0, limit: 30 })
+      .getPermissions({ page: this.pageActual, limit: this.limit })
       .then((data) => {
         this.permissions = data;
       });
   }
 
+  getUsers() {
+    Promise.all([
+      this.userService.getUsers({
+        page: this.pageActual,
+        limit: this.limit,
+      }),
+      this.userService.getTotalUsers(),
+    ]).then((requests) => {
+      this.listUsers = requests[0];
+      this.totalData = requests[1];
+      this.page = Math.ceil(this.totalData / this.limit);
+    });
+  }
+
   async register() {
     const registerData = this.createUser.getRawValue();
-    console.log(this.createUser.get('permission').value);
     try {
       await this.authService.signUp({
         email: registerData.email,
@@ -100,6 +125,7 @@ export class UsersComponent implements OnInit {
     }, 10000);
     this.createUser.reset();
     this.closeAdd();
+    this.getUsers();
   }
 
   closeAdd() {

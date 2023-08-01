@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
       });
 
       if (error) throw error;
+
       this.router.navigateByUrl('/admin/dashboard');
     } catch (error) {
       if (error instanceof Error) {

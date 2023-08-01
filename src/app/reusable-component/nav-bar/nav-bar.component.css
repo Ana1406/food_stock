@@ -1,0 +1,93 @@
+.noExpanded {
+  @apply flex flex-col 
+    items-center 
+    h-screen
+    bg-stone-50 
+    ml-0.5 
+    border-r-2 
+    border-gray-500 
+    w-24 
+    sm:w-20 
+    md:w-20 
+    lg:w-24 
+    xl:w-24;
+}
+
+.expanded {
+  @apply 
+   flex flex-col 
+    bg-stone-50 
+    h-screen
+    border-r-2 
+    border-gray-500
+    overflow-y-auto 
+    overscroll-y-none
+    w-[220px] 
+    sm:max-w-sm
+    md:max-w-md
+    lg:max-w-lg
+    xl:max-w-xl
+}
+ 
+.boxExpanded {
+  @apply 
+  p-6
+  mt-3
+  max-w-sm 
+  mx-auto
+  bg-blue-700/20
+  rounded-xl
+  shadow-lg
+  flex 
+  items-center 
+  space-x-4;
+}
+.titleItems {
+  @apply 
+    text-xs
+    text-center 
+    font-semibold 
+    text-gray-800 
+    uppercase;
+}
+.titleItemsExpanded {
+    @apply 
+      sm:text-sm
+      md:text-base
+      lg:text-lg
+      xl:text-lg 
+      text-center 
+      font-semibold 
+      text-gray-500 
+      uppercase;
+  }
+
+  .buttonExpanded{
+    @apply
+    flex 
+    justify-start
+    mb-0.5 
+    max-w-full 
+    w-auto 
+    mx-2 
+    bg-transparent 
+    hover:bg-blue-200 
+    rounded-lg
+
+
+  }
+
+  .buttonExpandedClose{
+    @apply
+    flex 
+    justify-center
+    mb-0.5 
+    max-w-full 
+    w-auto 
+    mx-2 
+    bg-transparent 
+    hover:bg-blue-200 
+    rounded-lg
+
+
+  }

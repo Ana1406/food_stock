@@ -6,11 +6,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TablesComponent } from './tables/tables.component';
 import { PermissionComponent } from './permission/permission.component';
 import { UsersComponent } from './users/users.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'settings',
     component: ConfigComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: 'permissions',
@@ -25,6 +28,9 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
   },
   {
     path: 'tables',

@@ -9,13 +9,21 @@ import { PermissionService } from 'src/app/services/permission.service';
 })
 export class PermissionComponent implements OnInit {
   createPermission: FormGroup;
-  toggleTabBtnPermission = false;
-  isOpenCreatePermissionDialog = false;
+
   listPermission = [];
+
   mensage: any;
   option: any;
-  isCreatedUser = false;
+  page: number;
+
+  isCreatedPermission = false;
+  toggleTabBtnPermission = false;
+  isOpenCreatePermissionDialog = false;
   isLoading = true;
+
+  totalData = 0;
+  pageActual = 0;
+  limit = 10;
 
   tableOptions = {
     columns: {
@@ -23,7 +31,7 @@ export class PermissionComponent implements OnInit {
         title: 'Nombre',
       },
       description: {
-        title: 'Description',
+        title: 'Descripción',
       },
       created_at: {
         title: 'Fecha de registro',
@@ -42,14 +50,29 @@ export class PermissionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.permissionService
-      .getPermissions({ page: 0, limit: 10 })
-      .then((data) => {
-        this.listPermission = data;
-        this.isLoading = false;
-      });
+    this.getPermissions();
   }
 
+  changePage(page: number) {
+    this.pageActual = page;
+
+    this.getPermissions();
+  }
+
+  getPermissions() {
+    Promise.all([
+      this.permissionService.getPermissions({
+        page: this.pageActual,
+        limit: this.limit,
+      }),
+      this.permissionService.getTotalPermissions(),
+    ]).then((requests) => {
+      this.listPermission = requests[0];
+      this.totalData = requests[1];
+      this.page = Math.ceil(this.totalData / this.limit);
+      this.isLoading = false;
+    });
+  }
   async permission() {
     const permissionData = this.createPermission.getRawValue();
     try {
@@ -63,12 +86,13 @@ export class PermissionComponent implements OnInit {
       this.mensage = error;
       this.option = 'error';
     }
-    this.isCreatedUser = true;
+    this.isCreatedPermission = true;
     setTimeout(() => {
-      this.isCreatedUser = false;
-    }, 10000);
+      this.isCreatedPermission = false;
+    }, 5000);
     this.createPermission.reset();
     this.closeAdd();
+    this.getPermissions();
   }
 
   closeAdd() {

@@ -28,6 +28,9 @@ export class ButtonComponent {
   @Input()
   hover = '';
 
+  @Input()
+  ring = false;
+
   get currentColor() {
     if (this.disabled) return 'bg-slate-200/50';
     return this.color;

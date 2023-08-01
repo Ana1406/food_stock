@@ -1,6 +1,6 @@
-<div class="flex w-screen h-screen bg-stone-200/50">
+<div class="flex w-screen bg-stone-200/50">
   <app-nav-bar *ngIf="sessionValidate"></app-nav-bar>
-  <div class="grow">
+  <div class="flex-grow overflow-y-auto">
     <router-outlet></router-outlet>
   </div>
 </div>
