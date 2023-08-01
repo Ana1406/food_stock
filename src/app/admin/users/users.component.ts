@@ -60,8 +60,8 @@ export class UsersComponent implements OnInit {
       name: new FormControl('', Validators.required),
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      email: ['', Validators.required, Validators.email],
-      permission: [''],
+      email: ['', [Validators.required, Validators.email]],
+      permission: [[], [Validators.required]],
     });
   }
 

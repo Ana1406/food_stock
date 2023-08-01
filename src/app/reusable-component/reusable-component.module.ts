@@ -13,6 +13,7 @@ import { TableRowDirective } from './directives/table-row.directive';
 import { IsLoadingDirective } from './directives/is-loading.directive';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { TagComponent } from './tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     SnackbarComponent,
     SpinnerComponent,
     IsLoadingDirective,
+    TagComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   exports: [

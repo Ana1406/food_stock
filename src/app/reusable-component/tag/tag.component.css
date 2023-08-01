@@ -1,0 +1,7 @@
+:host {
+  @apply text-sm;
+}
+
+.close-icon {
+  font-size: 16px !important;
+}

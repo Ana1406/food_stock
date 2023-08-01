@@ -1,0 +1,12 @@
+<div
+  class="flex items-center p-1 rounded-lg"
+  [ngClass]="TagBackgroundColor[color]"
+>
+  <ng-content></ng-content>
+  <em
+    *ngIf="close"
+    (click)="onCloseClick()"
+    class="material-icons cursor-pointer close-icon ml-1"
+    >close</em
+  >
+</div>

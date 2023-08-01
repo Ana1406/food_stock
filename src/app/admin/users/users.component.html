@@ -90,12 +90,12 @@
           />
         </div>
         <app-select
-          [control]="createUser.get('permission')"
-          [options]="permissions"
-          placeholder="Seleccio"
-          [optionsSelected]="createUser.get('permission').value"
-          [multiple]="true"
+          formControlName="permission"
+          placeholder="Selecciona los permisos"
           labelKey="name"
+          valueKey="id"
+          [options]="permissions"
+          [multiple]="true"
         ></app-select>
 
         <div class="flex justify-end" footer>
