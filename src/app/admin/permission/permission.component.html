@@ -14,7 +14,10 @@
   <div [appIsLoading]="isLoading" class="tablePermissions">
     <!-- <app-spinner></app-spinner> -->
 
-    <app-table [options]="tableOptions" [data]="listPermission">
+    <app-table     [pageActual]="pageActual"
+    [limit]="limit"
+    [total]="totalData"
+    (pageChange)="changePage($event)" [options]="tableOptions" [data]="listPermission">
       <ng-template appTableRow="created_at" let-row>
         {{ row.created_at | date }}
       </ng-template>
@@ -85,12 +88,7 @@
       </app-dialog>
     </form>
   </div>
-  <app-pagination
-    [pageActual]="pageActual"
-    [limit]="limit"
-    [total]="totalData"
-    (pageChange)="changePage($event)"
-  ></app-pagination>
+
   <app-snackbar [background]="option" *ngIf="isCreatedPermission">
     <div header></div>
     <div>

@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./inventory/inventory.module').then((m) => m.InventoryModule),
   },
-  // {path:'',redirectTo:"/auth/login",pathMatch:'full'}
+  {path:'',redirectTo:"/auth/login",pathMatch:'full'}
 ];
 
 @NgModule({

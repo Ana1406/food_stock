@@ -1,12 +1,15 @@
 .paginationTab{
     @apply
+    
     flex 
     flex-row 
     items-center 
     justify-evenly 
     mx-auto 
     sm:max-w-sm 
-    md:max-w-md 
+    
+    md:max-w-md
+    md:mx-auto 
     lg:max-w-lg 
     xl:max-w-xl 
     bg-transparent 

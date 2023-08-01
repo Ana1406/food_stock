@@ -1,4 +1,4 @@
-import { Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { TableRowDirective } from 'src/app/reusable-component/directives/table-row.directive';
 import { TableOptions } from 'src/types';
 
@@ -16,6 +16,22 @@ export class TableComponent<TItem extends object> {
 
   @Input()
   data: TItem[] = [];
+
+  @Input()
+  pageActual: number;
+
+  @Input()
+  limit: number;
+
+  @Input()
+  total: number;
+
+  @Output()
+  pageChange: EventEmitter<number> = new EventEmitter();
+
+  changePage(page: number) {
+    this.pageChange.emit(page);
+  }
 
   defaultColumnWidth = '225px';
   defaultTdAlign = 'center';

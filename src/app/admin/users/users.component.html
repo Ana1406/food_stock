@@ -9,7 +9,10 @@
   </div>
 
   <div class="tableUsers">
-    <app-table [options]="tableOptions" [data]="listUsers">
+    <app-table [pageActual]="pageActual"
+    [limit]="limit"
+    [total]="totalData"
+    (pageChange)="changePage($event)" [options]="tableOptions" [data]="listUsers">
       <ng-template appTableRow="created_at" let-row>
         <p>{{ row.created_at | date }}</p>
       </ng-template>
@@ -111,12 +114,7 @@
       </app-dialog>
     </form>
   </div>
-  <app-pagination
-    [pageActual]="pageActual"
-    [limit]="limit"
-    [total]="totalData"
-    (pageChange)="changePage($event)"
-  ></app-pagination>
+
   <app-snackbar [background]="option" *ngIf="isCreatedUser">
     <div header></div>
     <div>

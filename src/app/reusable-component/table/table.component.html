@@ -1,5 +1,5 @@
-<div class="drop-shadow-xl">
-  <table class="table-auto">
+<div class="drop-shadow-xl content-center">
+  <table class="table-auto ">
     <thead>
       <tr class="bg-gradient-to-r from-blue-300 to-sky-300">
         <th
@@ -33,6 +33,13 @@
       </tr>
     </tbody>
   </table>
+  <app-pagination
+class="mx-auto"
+  [pageActual]="pageActual"
+  [limit]="limit"
+  [total]="total"
+  (pageChange)="changePage($event)" ></app-pagination>
+
 </div>
 
 <ng-template #defaultRow let-row let-property="property">

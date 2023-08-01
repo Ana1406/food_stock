@@ -22,11 +22,11 @@
 
 .tablePermissions{
     @apply
-    w-auto 
+    flex flex-row
+    p-[10px]
     mx-auto 
     sm:mx-auto 
     sm:w-[433px] 
-    sm:max-w-md 
     sm:overflow-x-auto 
     md:mx-auto 
     md:w-[532px] 
