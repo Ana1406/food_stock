@@ -1,21 +1,45 @@
 <div
-  class="container bg-slate-200/50 px-2 py-2 mt-3.5 sm:mx-auto w-52 rounded-lg border-2 border-lime-800"
+  class="relative bg-slate-200/50 px-2 py-2 mt-3.5 rounded-lg border-2 border-lime-800"
+  id="element"
 >
-  <div class="flex flex-row justify-between truncate">
-    {{ selectedLabels }}
+  <div class="flex flex-row justify-between">
+    <div class="flex" *ngIf="multiple; else singleSelection">
+      <app-tag
+        (closeClick)="removeItem(option)"
+        [close]="true"
+        color="emerald"
+        class="text-white mx-0.5"
+        *ngFor="let option of selectedOptions"
+        >{{ option[labelKey] }}</app-tag
+      >
+    </div>
+    <ng-template #singleSelection>
+      <span class="truncate w-9/12">{{ selectedLabels }}</span>
+    </ng-template>
 
-    <span class="material-icons text-slate-500" (click)="openSelect()">
-      {{ isOpenSelect ? "expand_less" : "expand_more" }}
+    <span
+      class="material-icons text-slate-500 cursor-pointer"
+      (click)="openSelect()"
+    >
+      {{ isOpen ? "expand_less" : "expand_more" }}
     </span>
   </div>
-  <select
-    class="fixed mt-2.5 flex flex-col items-start bg-slate-200/50"
-    *ngIf="isOpenSelect"
-    [formControl]="control"
-    [multiple]="multiple"
+  <div
+    #optionsContainer
+    class="options-container absolute mt-2.5 flex flex-col items-start bg-zinc-100"
+    *ngIf="isOpen"
   >
-    <option [value]="option" *ngFor="let option of options">
-      {{ option.name }}
-    </option>
-  </select>
+    <div
+      class="flex p-2 cursor-pointer w-full border border-b-stone-300 hover:bg-zinc-300"
+      [ngStyle]="{ width: optionsContainer.offsetWidth }"
+      *ngFor="let option of internalOptions; let i = index"
+      (click)="multiple ? onMultipleClick(option, i) : onSingleClick(option, i)"
+    >
+      <em class="material-icons-outlined w-6 h-6 mr-2">{{
+        option.selected ? "check_box_outline" : "check_box_outline_blank"
+      }}</em>
+
+      <span class="truncate">{{ option[labelKey] }}</span>
+    </div>
+  </div>
 </div>
