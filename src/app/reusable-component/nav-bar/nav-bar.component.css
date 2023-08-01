@@ -65,7 +65,22 @@
   .buttonExpanded{
     @apply
     flex 
-    justify-center 
+    justify-start
+    mb-0.5 
+    max-w-full 
+    w-auto 
+    mx-2 
+    bg-transparent 
+    hover:bg-blue-200 
+    rounded-lg
+
+
+  }
+
+  .buttonExpandedClose{
+    @apply
+    flex 
+    justify-center
     mb-0.5 
     max-w-full 
     w-auto 

@@ -75,9 +75,9 @@
         {{ item.section }}
       </li>
 
-      <li *ngFor="let text of item.routes" class="text-start my-5">
+      <li *ngFor="let text of item.routes" class="my-5">
         <div
-          class="mx-2 max-w-full bg-transparent hover:bg-blue-200 rounded-lg"
+          class="mx-2 flex basis-full bg-transparent hover:bg-blue-200 rounded-lg"
         >
           <app-button
             [routerLink]="text.route"
@@ -94,7 +94,10 @@
       </li>
     </ul>
     <div class="buttonExpanded">
-      <span class="material-icons-outlined text-center my-auto">logout</span>
+      <span
+        class="inline-block align-middle material-icons-outlined mx-5 text-start my-auto"
+        >logout</span
+      >
       <app-button
         [border]="'large'"
         color="bg-transparent"
@@ -105,7 +108,8 @@
       </app-button>
     </div>
     <div class="buttonExpanded">
-      <span class="material-icons-outlined text-center my-auto"
+      <span
+        class="material-icons-outlined inline-block align-middle mx-5 text-center my-auto"
         >account_box</span
       >
       <app-button
@@ -117,7 +121,7 @@
         Cuenta
       </app-button>
     </div>
-    <div class="buttonExpanded">
+    <div class="buttonExpandedClose">
       <app-button
         [border]="'large'"
         color="bg-transparent"
@@ -129,9 +133,9 @@
     </div>
   </nav>
 </ng-template>
-<app-dialog *ngIf="isDialogOpen" [title]="'Cerrar Sesion'">
+<app-dialog *ngIf="isDialogOpen" [title]="'Cerrar Sesion?'">
   Seguro desea cerrar sesion?
-  <div class="flex justify-end space-x-3" footer>
+  <div class="flex justify-end space-x-3 m-3" footer>
     <app-button
       (click)="toggleDialog()"
       [border]="'large'"

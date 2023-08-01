@@ -1,9 +1,8 @@
 <div class="mx-20 my-5">
   <h3 class="font-thin text-2xl text-gray-800">Gestion de Usuarios</h3>
   <div
-    class="flex flex-row justify-between items-center mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
+    class="flex flex-row justify-end items-center mx-5 mb-5 sm:mx-5 md:mx-32 lg:mx-48 xl:mx-64"
   >
-    <p class="text-center">Total de Usuarios: {{ totalData }}</p>
     <app-button (click)="clickAdd()" color="bg-stone-200/50" [border]="'full'">
       <span class="material-icons text-sky-500"> person_add </span>
     </app-button>
@@ -93,20 +92,19 @@
           [multiple]="true"
           labelKey="name"
         ></app-select>
-
-        <div class="flex justify-end" footer>
+        <div class="flex justify-between p-3 space-x-2" footer>
           <app-button
-            (click)="closeAdd()"
-            color="bg-red-500"
+            class="basis-1/2"
             [border]="'large'"
-            class="mr-2"
+            (click)="closeAdd()"
+            color="bg-blue-200"
             >Cerrar</app-button
           >
           <app-button
+            class="basis-1/2"
+            [border]="'large'"
             color="bg-lime-700/50"
             [disabled]="createUser.invalid"
-            [border]="'large'"
-            class="mr-2"
             >Crear</app-button
           >
         </div>

@@ -31,7 +31,7 @@ export class PermissionComponent implements OnInit {
         title: 'Nombre',
       },
       description: {
-        title: 'Description',
+        title: 'Descripción',
       },
       created_at: {
         title: 'Fecha de registro',
