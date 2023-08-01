@@ -23,6 +23,11 @@ export class AuthService {
     return this.supabaseService.supabase.auth.signInWithPassword(credentials);
   }
 
+  async isLogin() {
+    const data = await this.supabaseService.supabase.auth.getSession();
+    return data.data.session;
+  }
+
   async signUp(userDto: UserSignUpDto) {
     const { data: signUpResponse, error: signUpError } =
       await this.supabaseService.supabase.auth.signUp({

@@ -22,16 +22,16 @@
 
 .tableUsers{
     @apply
+    flex flex-row
     w-auto 
-    mx-auto 
-    max-h-96 
-    overflow-y-auto 
+    mx-auto
+    overflow-y-auto
     sm:mx-auto 
     sm:max-w-lg 
     sm:overflow-x-auto 
     md:mx-auto 
-    md:w-96
-    md:max-w-md 
+    md:w-[600px]
+    md:max-w-lg 
     md:overflow-x-auto 
     lg:mx-auto
     lg:w-[782px]

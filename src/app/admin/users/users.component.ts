@@ -25,13 +25,15 @@ export class UsersComponent implements OnInit {
 
   mensage: any;
   option: any;
+  page: number;
+
   totalData = 0;
   pageActual = 0;
   limit = 10;
-  page: number;
 
   listUsers: User[] = [];
   permissions: Permission[] = [];
+
   tableOptions: TableOptions = {
     columns: {
       name: {
