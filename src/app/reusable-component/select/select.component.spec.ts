@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectComponent } from './select.component';
-import {
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { User } from 'src/types';
+
+type TestOption = {
+  label: string;
+  value: boolean;
+};
 
 describe('SelectComponent', () => {
-  let component: SelectComponent<any>;
-  let fixture: ComponentFixture<SelectComponent<any>>;
+  let component: SelectComponent<TestOption>;
+  let fixture: ComponentFixture<SelectComponent<TestOption>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,9 +19,13 @@ describe('SelectComponent', () => {
       imports: [FormsModule, ReactiveFormsModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SelectComponent);
+    fixture = TestBed.createComponent(SelectComponent<TestOption>);
+
     component = fixture.componentInstance;
-    component.control = new FormControl('', [Validators.required]);
+    component.options = [
+      { label: 'Si', value: true },
+      { label: 'No', value: false },
+    ];
     fixture.detectChanges();
   });
 
