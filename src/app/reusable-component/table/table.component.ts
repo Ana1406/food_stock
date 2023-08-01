@@ -21,10 +21,10 @@ export class TableComponent<TItem extends object> {
   pageActual: number;
 
   @Input()
-  limit: number;
+  limit=10;
 
   @Input()
-  total: number;
+  total=0;
 
   @Output()
   pageChange: EventEmitter<number> = new EventEmitter();

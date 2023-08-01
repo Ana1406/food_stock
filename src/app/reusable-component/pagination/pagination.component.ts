@@ -16,10 +16,10 @@ export class PaginationComponent implements OnChanges {
   pageActual: number;
 
   @Input()
-  limit: number;
+  limit:number;
 
   @Input()
-  total: number;
+  total:number;
 
   @Output()
   pageChange: EventEmitter<number> = new EventEmitter();
@@ -40,6 +40,7 @@ export class PaginationComponent implements OnChanges {
   }
 
   totalPages() {
+    console.log(this.total / this.limit,'oli')
     return Math.ceil(this.total / this.limit);
   }
 }
